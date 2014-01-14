@@ -1,0 +1,12 @@
+*~
+.DS_Store
+.svn
+.cvs
+*.bak
+*.swp
+Thumbs.db
+.sass-cache
+
+# wordpress specific
+/wp-config.php
+/content/uploads/
