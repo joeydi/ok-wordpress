@@ -1,0 +1,67 @@
+body.page-services > footer {
+    background: $black;
+    color: $white;
+
+    a, a:visited, a:hover {
+        color: $white;
+    }
+}
+
+.service {
+    .container {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    h1 {
+        font-size: 18px;
+        font-weight: $bold;
+        color: $red;
+        text-transform: uppercase;
+    }
+
+    h2 {
+        font-size: 24px;
+        font-weight: $bold;
+    }
+}
+
+#rwd {
+    background: #ededee;
+
+    @include respond-to(tablet) {
+        background: #ededee url('../images/service-rwd.jpg') 50% 50% no-repeat;
+    }
+}
+
+#cms {
+    background: $white;
+
+    @include respond-to(tablet) {
+        background: $white url('../images/service-cms.jpg') 50% 0 no-repeat;
+        @include background-size(cover);
+
+        .col-sm-6 {
+            padding-left: 80px;
+        }
+    }
+
+
+    @include respond-to(desktop) {
+        .col-sm-6 {
+            padding-left: 0;
+        }
+    }
+}
+
+#app {
+    background: #ededee;
+
+    @include respond-to(tablet) {
+        background: #ededee url('../images/service-app.jpg') 25% 50% no-repeat;
+    }
+
+    @include respond-to(widescreen) {
+        background-position: 100% 50%;
+    }
+}

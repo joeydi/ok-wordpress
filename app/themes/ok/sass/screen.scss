@@ -1,7 +1,11 @@
 @import 'compass/css3';
+@import 'magnific-popup';
 @import 'socialico';
 @import 'variables';
 @import 'mixins';
+@import 'home';
+@import 'services';
+@import 'projects';
 
 body {
     font-family: 'effra', sans-serif;
@@ -18,12 +22,12 @@ body > header {
 
 body > footer {
     padding: $vertical-padding 0;
-    background: $black;
-    color: $white;
+    background: $light-grey;
+    color: $black;
     font-size: 20px;
 
     a, a:visited, a:hover {
-        color: $white;
+        color: $black;
     }
 
     a.socialico {
@@ -35,7 +39,9 @@ body > footer {
     }
 
     .row:first-child {
-        margin-bottom: 2em;
+        @include respond-to(tablet) {
+            margin-bottom: 2em;
+        }
     }
 
     .col-sm-4 {
@@ -46,9 +52,16 @@ body > footer {
 
     #copyright {
         font-size: 16px;
-        line-height: 50px;
+        line-height: 20px;
+        padding-top: 15px;
+        padding-bottom: 15px;
         text-transform: uppercase;
         font-weight: $bold;
+        letter-spacing: -0.5px;
+
+        @include respond-to(desktop) {
+            letter-spacing: 0;
+        }
     }
 }
 
@@ -131,6 +144,7 @@ body > footer {
 
 img {
     max-width: 100%;
+    height: auto;
 }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
@@ -141,256 +155,16 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     }
 }
 
+a, a:visited {
+    color: $red;
+}
+
+a:hover {
+    color: darken($red, 10%);
+}
+
 .btn {
     text-transform: uppercase;
     font-weight: $bold;
     letter-spacing: 1px;
-}
-
-// Homepage
-
-body.home {
-    #hero {
-        min-height: 400px;
-        overflow: hidden;
-
-        h1 {
-            @include respond-to(tablet) {
-                font-size: 48px;
-            }
-
-            @include respond-to(desktop) {
-                font-size: 42px;
-            }
-
-            @include respond-to(widescreen) {
-                font-size: 54px;
-            }
-        }
-    }
-
-    #phone {
-        margin-top: 2em;
-        margin-bottom: -25%;
-
-        @include respond-to(desktop) {
-            margin-top: -2em;
-            position: absolute;
-            max-width: none;
-        }
-    }
-
-    #content {
-        margin-top: 30px;
-        padding-top: 30px;
-
-        @include respond-to(desktop) {
-            margin-top: 50px;
-        }
-
-        &:before {
-            content: " ";
-            display: block;
-            width: 4px;
-            height: 100%;
-            position: absolute;
-            left: 50%;
-            top: 0;
-            margin-left: -2px;
-            background: $light-grey;
-        }
-
-        &:after {
-            content: " ";
-            display: block;
-            width: 40px;
-            height: 40px;
-            position: absolute;
-            left: 50%;
-            top: 0;
-            margin-left: -20px;
-            background: transparent url('../images/clock.png') 0 0;
-        }
-
-        h2 {
-            position: relative;
-            z-index: 1;
-            padding: 1em 0;
-            margin-bottom: 1em;
-            text-align: center;
-            font-weight: $regular;
-            @include background(linear-gradient(top, rgba(255, 255, 255, 0), $white, rgba(255, 255, 255, 0)));
-
-            @include respond-to(tablet) {
-                font-size: 42px;
-            }
-
-            @include respond-to(desktop) {
-                font-size: 52px;
-            }
-
-            @include respond-to(widescreen) {
-                font-size: 62px;
-            }
-        }
-    }
-}
-
-.testimonial {
-    position: relative;
-    z-index: 1;
-    margin-bottom: 3em;
-    clear: both;
-
-    &:before {
-        content: " ";
-        display: block;
-        width: 16px;
-        height: 16px;
-        position: absolute;
-        right: 50%;
-        top: -38px;
-        margin-right: -8px;
-        @include border-radius(100%);
-        background: darken($light-grey, 10%);
-        border: 5px solid $light-grey;
-    }
-
-    @include respond-to(tablet) {
-        width: 90%;
-        margin: 0 auto 3em;
-
-        &:nth-child(even) {
-            header {
-                padding: 5px 185px 5px 1.5em;
-
-                &:before {
-                    content: "”";
-                    left: auto;
-                    right: 15px;
-                }
-            }
-
-            img {
-                float: right;
-                margin-left: 0;
-                margin-right: -105px;
-            }
-        }
-    }
-
-    @include respond-to(desktop) {
-        width: 45%;
-        margin: -200px 0 0 0;
-
-        &:first-child {
-            margin-top: 0;
-        }
-
-        &:nth-child(even) {
-            float: right;
-
-            &:before {
-                right: auto;
-                left: -55px;
-            }
-
-            header:after {
-                left: auto;
-                right: 100%;
-                border-left-color: transparent;
-                border-right-color: $red;
-            }
-        }
-
-        &:before {
-            right: -55px;
-            top: 22px;
-            margin-right: 0;
-        }
-    }
-
-    @include respond-to(widescreen) {
-        &:nth-child(even):before {
-            right: auto;
-            left: -65px;
-        }
-
-        &:before {
-            right: -65px;
-        }
-    }
-
-    header {
-        position: relative;
-        padding: 5px 1.5em 5px 120px;
-        background: $red;
-        color: $white;
-
-        &:after {
-            left: 50%;
-            bottom: 100%;
-            border: solid transparent;
-            content: " ";
-            height: 0;
-            width: 0;
-            position: absolute;
-            pointer-events: none;
-            border-color: transparent;
-            border-bottom-color: $red;
-            border-width: 10px;
-            margin-left: -10px;
-        }
-
-        a,
-        a:visited {
-            color: $white;
-        }
-
-        .name {
-            text-transform: uppercase;
-            font-weight: $bold;
-        }
-
-        img {
-            float: left;
-            margin-left: -105px;
-            margin-top: -16px;
-            border: 3px solid $white;
-            @include border-radius(100%);
-        }
-
-        @include respond-to(tablet) {
-            padding-left: 185px;
-
-            &:before {
-                content: "“";
-                display: block;
-                position: absolute;
-                left: 15px;
-                top: -17px;
-                font-size: 100px;
-                font-family: sans-serif;
-                font-weight: bold;
-            }
-        }
-
-        @include respond-to(desktop) {
-            &:after {
-                left: 100%;
-                top: 50%;
-                bottom: auto;
-                border-bottom-color: transparent;
-                border-left-color: $red;
-                margin-top: -10px;
-                margin-left: 0;
-            }
-        }
-    }
-
-    blockquote {
-        padding: 1.5em;
-        background: $light-grey;
-        border: none;
-    }
 }
