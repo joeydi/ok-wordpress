@@ -1,4 +1,5 @@
 @import 'compass/css3';
+@import 'socialico';
 @import 'variables';
 @import 'mixins';
 
@@ -19,6 +20,36 @@ body > footer {
     padding: $vertical-padding 0;
     background: $black;
     color: $white;
+    font-size: 20px;
+
+    a, a:visited, a:hover {
+        color: $white;
+    }
+
+    a.socialico {
+        display: inline-block;
+        width: 40px;
+        height: 50px;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    .row:first-child {
+        margin-bottom: 2em;
+    }
+
+    .col-sm-4 {
+        @include respond-to(tablet) {
+            text-align: right;
+        }
+    }
+
+    #copyright {
+        font-size: 16px;
+        line-height: 50px;
+        text-transform: uppercase;
+        font-weight: $bold;
+    }
 }
 
 #logo {
@@ -221,10 +252,14 @@ body.home {
         top: -38px;
         margin-right: -8px;
         @include border-radius(100%);
-        background: $light-grey;
+        background: darken($light-grey, 10%);
+        border: 5px solid $light-grey;
     }
 
     @include respond-to(tablet) {
+        width: 90%;
+        margin: 0 auto 3em;
+
         &:nth-child(even) {
             header {
                 padding: 5px 185px 5px 1.5em;
@@ -246,8 +281,7 @@ body.home {
 
     @include respond-to(desktop) {
         width: 45%;
-        margin-top: -200px;
-        margin-bottom: 0;
+        margin: -200px 0 0 0;
 
         &:first-child {
             margin-top: 0;

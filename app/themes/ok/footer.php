@@ -1,6 +1,30 @@
         <footer>
             <div class="container">
-                <p>&copy; <?php echo date( 'Y' ); ?> Okay Plus Design &amp; Technology</p>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <p><strong>Web Application Design &amp; Development</strong><br />from beautiful Burlington, VT</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <p>
+                            <a href="mailto:joeydi@okaypl.us">joeydi@okaypl.us</a><br />
+                            <a href="tel:14804596720">480.459.6720</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="copyright" class="col-sm-8">
+                        <p>&copy; <?php echo date( 'Y' ); ?> Okay Plus, 77 College St #3B, Burlington, VT 05401</p>
+                    </div>
+                    <div id="social" class="col-sm-4">
+                        <p>
+                            <a class="twitterbirdcircle socialico" href="https://twitter.com/joeydi">Twitter</a>
+                            <a class="facebookcircle socialico" href="https://www.facebook.com/okayplusdesign">Facebook</a>
+                            <a class="linkedincircle socialico" href="http://www.linkedin.com/in/joeydi">LinkedIn</a>
+                            <a class="dribbblecircle socialico" href="http://dribbble.com/joeydi">Dribbble</a>
+                            <a class="googlecircle socialico" href="https://github.com/joeydi">Github</a>
+                        </p>
+                    </div>
+                </div>
             </div>
         </footer>
 
