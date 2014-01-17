@@ -17,11 +17,11 @@
                     </div>
                     <div id="social" class="col-sm-4">
                         <p>
-                            <a class="twitterbirdcircle socialico" href="https://twitter.com/joeydi">Twitter</a>
-                            <a class="facebookcircle socialico" href="https://www.facebook.com/okayplusdesign">Facebook</a>
-                            <a class="linkedincircle socialico" href="http://www.linkedin.com/in/joeydi">LinkedIn</a>
-                            <a class="dribbblecircle socialico" href="http://dribbble.com/joeydi">Dribbble</a>
-                            <a class="googlecircle socialico" href="https://github.com/joeydi">Github</a>
+                            <a class="icon-twitter" href="https://twitter.com/joeydi">Twitter</a>
+                            <a class="icon-facebook" href="https://www.facebook.com/okayplusdesign">Facebook</a>
+                            <a class="icon-linkedin" href="http://www.linkedin.com/in/joeydi">LinkedIn</a>
+                            <a class="icon-dribbble" href="http://dribbble.com/joeydi">Dribbble</a>
+                            <a class="icon-github" href="https://github.com/joeydi">Github</a>
                         </p>
                     </div>
                 </div>

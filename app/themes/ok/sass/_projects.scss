@@ -44,6 +44,20 @@ body.single-project {
     margin-bottom: 2em;
 }
 
+.project-meta {
+    font-size: 16px;
+
+    strong {
+        text-transform: uppercase;
+        font-weight: $bold;
+    }
+
+    .meta-spacer {
+        display: inline-block;
+        margin: 0 1em;
+    }
+}
+
 .project-images {
     img {
         display: block;

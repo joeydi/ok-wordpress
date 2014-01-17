@@ -19,6 +19,9 @@ OK.init_project = function() {
             enabled: true,
             preload: [1,2],
             navigateByImgClick: true,
+        },
+        zoom: {
+            enabled: true,
         }
     });
 };

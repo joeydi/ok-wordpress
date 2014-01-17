@@ -8,8 +8,8 @@
             <div class="col-md-5">
                 <h1>Okay Plus is the web design studio of Joe di Stefano</h1>
                 <p>Critical thinking, clean code and responsive design. These are the tools I use to bring digital experiences to life online.</p>
-                <a class="btn">View My Work »</a>
-                <a class="btn">Get In Touch »</a>
+                <a class="btn" href="<?php echo home_url( '/work/' ); ?>">View My Work »</a>
+                <a class="btn" href="<?php echo home_url( '/contact/' ); ?>">Get In Touch »</a>
             </div>
             <div class="col-md-7">
                 <img id="phone" src="<?php bloginfo( 'stylesheet_directory' ); ?>/images/phone.png" alt="" />

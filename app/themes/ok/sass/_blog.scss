@@ -1,0 +1,137 @@
+.post,
+.quote,
+.link {
+    position: relative;
+    margin-bottom: 40px;
+
+    @include respond-to(tablet) {
+        margin-bottom: 60px;
+    }
+
+    @include respond-to(desktop) {
+        margin-bottom: 100px;
+    }
+}
+
+.post {
+    background: lighten($light-grey, 2%);
+    @include border-radius(3px);
+    overflow: hidden;
+
+    .post-content,
+    .post-meta {
+        padding: 1em;
+
+        @include respond-to(tablet) {
+            padding: 1em 3em;
+        }
+
+        @include respond-to(desktop) {
+            padding: 1em 4em;
+        }
+    }
+
+    .post-content {
+        @include respond-to(desktop) {
+            padding: 2em 4em;
+        }
+    }
+
+    .post-meta {
+        background: darken($light-grey, 3%);
+
+        .date,
+        .tags {
+            display: inline-block;
+            margin-right: 2em;
+            text-transform: uppercase;
+            font-size: 14px;
+            font-weight: $bold;
+        }
+    }
+
+    h1 {
+        text-transform: uppercase;
+        font-size: 24px;
+        font-weight: $bold;
+        margin-bottom: 1em;
+    }
+}
+
+.quote {
+    @include respond-to(tablet) {
+        padding: 0 3em;
+    }
+
+    @include respond-to(desktop) {
+        padding: 0 4em;
+    }
+
+    blockquote {
+        padding: 0;
+        border: none;
+        font-weight: $medium;
+        font-style: italic;
+    }
+
+    .permalink:before {
+        content: "\e608";
+    }
+}
+
+.link {
+    @include respond-to(tablet) {
+        padding: 0 3em;
+    }
+
+    @include respond-to(desktop) {
+        padding: 0 4em;
+    }
+
+    h1 {
+        font-size: 18px;
+        margin-bottom: 1em;
+    }
+
+    .permalink:before {
+        content: "\e606";
+    }
+}
+
+.permalink,
+.permalink:visited {
+    display: none;
+    width: 3em;
+    height: 30px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    color: $black;
+    text-align: center;
+
+    @include respond-to(tablet) {
+        display: block;
+    }
+
+    @include respond-to(desktop) {
+        width: 4em;
+    }
+
+    &:before {
+        font-family: 'icons';
+        speak: none;
+        font-style: normal;
+        font-weight: normal;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    span {
+        display: inline-block;
+        text-indent: 100%;
+    }
+}

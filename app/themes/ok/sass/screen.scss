@@ -1,11 +1,13 @@
 @import 'compass/css3';
 @import 'magnific-popup';
-@import 'socialico';
+// @import 'socialico';
+@import 'icons';
 @import 'variables';
 @import 'mixins';
 @import 'home';
 @import 'services';
 @import 'projects';
+@import 'blog';
 
 body {
     font-family: 'effra', sans-serif;
@@ -17,7 +19,7 @@ body {
 body > header {
     padding: 35px 0;
     background: $red;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
 }
 
 body > footer {
@@ -30,10 +32,13 @@ body > footer {
         color: $black;
     }
 
-    a.socialico {
+    [class^="icon-"],
+    [class*=" icon-"] {
         display: inline-block;
-        width: 40px;
-        height: 50px;
+        width: 36px;
+        height: 36px;
+        margin-right: 4px;
+        font-size: 36px;
         white-space: nowrap;
         overflow: hidden;
     }
@@ -52,9 +57,9 @@ body > footer {
 
     #copyright {
         font-size: 16px;
-        line-height: 20px;
-        padding-top: 15px;
-        padding-bottom: 15px;
+        line-height: 16px;
+        padding-top: 10px;
+        padding-bottom: 10px;
         text-transform: uppercase;
         font-weight: $bold;
         letter-spacing: -0.5px;
@@ -67,9 +72,11 @@ body > footer {
 
 #logo {
     display: block;
+    margin-bottom: 2em;
     text-align: center;
 
     @include respond-to(tablet) {
+        margin-bottom: 0;
         text-align: left;
     }
 
