@@ -26,6 +26,12 @@ OK.init_project = function() {
     });
 };
 
+OK.init_video_post = function() {
+    console.log('foo');
+    $('.video').fitVids();
+}
+
 $(document).ready(function() {
     OK.init_project();
+    OK.init_video_post();
 });

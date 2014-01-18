@@ -18,6 +18,10 @@
     @include border-radius(3px);
     overflow: hidden;
 
+    .post-image img {
+        width: 100%;
+    }
+
     .post-content,
     .post-meta {
         padding: 1em;
@@ -38,6 +42,7 @@
     }
 
     .post-meta {
+        clear: both;
         background: darken($light-grey, 3%);
 
         .date,
@@ -56,6 +61,10 @@
         font-weight: $bold;
         margin-bottom: 1em;
     }
+
+    h2 {
+        font-size: 24px;
+    }
 }
 
 .quote {
@@ -67,7 +76,8 @@
         padding: 0 4em;
     }
 
-    blockquote {
+    blockquote,
+    blockquote p {
         padding: 0;
         border: none;
         font-weight: $medium;
@@ -134,4 +144,14 @@
         display: inline-block;
         text-indent: 100%;
     }
+}
+
+.alignright {
+    float: right;
+    margin-left: 1em;
+}
+
+.alignleft {
+    float: left;
+    margin-right: 1em;
 }

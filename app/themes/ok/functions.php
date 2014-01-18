@@ -1,5 +1,9 @@
 <?php
 
+/* Load required libraries */
+require_once( dirname( __FILE__ ) . '/inc/markdown.php' );
+
+/* Load required custom includes */
 require_once( dirname( __FILE__ ) . '/inc/post-types.php' );
 require_once( dirname( __FILE__ ) . '/inc/taxonomies.php' );
 
@@ -16,7 +20,7 @@ class App {
 
         add_theme_support( 'menus' );
         add_theme_support( 'post-thumbnails' );
-        add_theme_support( 'post-formats', array( 'link', 'quote' ) );
+        add_theme_support( 'post-formats', array( 'link', 'quote', 'video' ) );
 
         add_image_size( 'headshot', 80, 80, true );
 
@@ -25,6 +29,7 @@ class App {
         add_action( 'wp_head', array( $this, 'init_typekit' ) );
 
         add_filter( 'body_class', array( $this, 'post_body_class' ) );
+        add_filter( 'the_content', array( $this, 'transform_markdown' ) );
     }
 
     function action_enqueue_scripts() {
@@ -38,6 +43,7 @@ class App {
         /* Footer scripts */
         wp_enqueue_script( 'isotope', path_join( get_stylesheet_directory_uri(), 'js/isotope.pkgd.js' ), null, $this->version, true );
         wp_enqueue_script( 'magnific', path_join( get_stylesheet_directory_uri(), 'js/jquery.magnific-popup.js' ), array( 'jquery' ), $this->version, true );
+        wp_enqueue_script( 'fitvids', path_join( get_stylesheet_directory_uri(), 'js/jquery.fitvids.js' ), null, $this->version, true );
         wp_enqueue_script( 'main', path_join( get_stylesheet_directory_uri(), 'js/main.js' ), array( 'jquery' ), $this->version, true );
     }
 
@@ -58,5 +64,9 @@ class App {
         }
 
         return $classes;
+    }
+
+    function transform_markdown( $content ) {
+        return Markdown( $content );
     }
 }

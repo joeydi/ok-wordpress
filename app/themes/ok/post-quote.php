@@ -1,15 +1,15 @@
 <div class="quote">
     <blockquote>
-        <?php the_field( 'quote' ); ?>
+        <?php echo apply_filters( 'the_content', get_field( 'quote' ) ); ?>
     </blockquote>
 
-    <div class="quote-source">
+    <p class="quote-source">
         <?php if ( $source = get_field( 'source' ) ) : ?>
         &mdash; <a href="<?php echo $source ?>"><?php the_title(); ?></a>
         <?php else : ?>
         &mdash; <?php the_field( 'author' ); ?>
         <?php endif; ?>
-    </div>
+    </p>
 
     <?php the_content(); ?>
 
