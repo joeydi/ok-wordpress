@@ -1,6 +1,5 @@
 @import 'compass/css3';
 @import 'magnific-popup';
-// @import 'socialico';
 @import 'icons';
 @import 'variables';
 @import 'mixins';
@@ -8,6 +7,7 @@
 @import 'services';
 @import 'projects';
 @import 'blog';
+@import 'contact';
 
 body {
     font-family: 'effra', sans-serif;
@@ -100,6 +100,10 @@ body > footer {
         line-height: 30px;
         padding: 0 20px;
 
+        &:last-child {
+            padding-right: 0;
+        }
+
         a,
         a:visited {
             text-transform: uppercase;
@@ -128,11 +132,18 @@ body > footer {
         font-size: 22px;
     }
 
-    a {
+    a.btn {
         margin-right: 1em;
         margin-top: 1em;
         border: 2px solid $white;
         color: $white;
+        @include border-radius(5px);
+        @include transition(all 0.25s);
+
+        &:hover {
+            background: $white;
+            color: $red;
+        }
     }
 }
 

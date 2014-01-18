@@ -1,0 +1,185 @@
+.page-contact {
+    #hero {
+        text-align: center;
+
+        @include respond-to(tablet) {
+            text-align: left;
+        }
+    }
+
+    .confirmation {
+        text-align: center;
+        margin-bottom: 2em;
+    }
+
+    h2 {
+        font-weight: $bold;
+    }
+
+    form {
+        label {
+            font-size: 16px;
+            font-weight: $bold;
+            text-transform: uppercase;
+        }
+
+        input,
+        textarea {
+            height: auto;
+            padding: 0.5em 1em;
+            background: $light-grey;
+            font-size: 18px;
+            @include box-shadow(none);
+            border-left-width: 0;
+            border-right-width: 0;
+            border-bottom-width: 0;
+
+            &:focus {
+                border-left-width: 1px;
+                border-right-width: 1px;
+                border-bottom-width: 1px;
+            }
+        }
+
+        button {
+            padding: 0.75em 2em;
+            background: $red;
+            color: $white;
+            border: none;
+            @include transition(all 0.35s);
+
+            &:hover,
+            &:focus {
+                background-color: darken($red, 10%);
+            }
+        }
+
+        @include respond-to(tablet) {
+            input {
+                width: 75%;
+            }
+        }
+    }
+}
+
+.headshot {
+    display: inline-block;
+    max-width: 300px;
+    border: 6px solid $white;
+    @include border-radius(100%);
+    @include box-shadow(0 3px 5px rgba(0, 0, 0, 0.25));
+    margin-bottom: -30px;
+
+    @include respond-to(tablet) {
+        max-width: 340px;
+        margin-bottom: -100px;
+    }
+}
+
+.card {
+    position: relative;
+    background: $white;
+    color: $black;
+    @include border-radius(5px);
+    @include box-shadow(0 0 5px rgba(0, 0, 0, 0.25));
+    overflow: hidden;
+    text-align: center;
+
+    @include respond-to(tablet) {
+        text-align: left;
+    }
+
+    h1, h2 {
+        margin: 0;
+        padding: 100px 15px 15px;
+        font-size: 18px;
+        font-weight: $bold;
+        text-transform: uppercase;
+        background: $white;
+        color: $red;
+
+        @include respond-to(tablet) {
+            padding-left: 120px;
+            padding-top: 15px;
+        }
+    }
+
+    p {
+        margin: 0;
+        padding: 20px 15px;
+        font-size: 26px !important;
+        background: $light-grey;
+
+        @include respond-to(tablet) {
+            padding-left: 120px;
+        }
+
+        @include respond-to(desktop) {
+            font-size: 30px !important;
+        }
+
+        a,
+        a:visited {
+            color: $black !important;
+        }
+    }
+
+    footer {
+        padding: 15px;
+        font-size: 14px;
+        font-weight: $bold;
+        text-transform: uppercase;
+        background: darken($light-grey, 5%);
+
+        @include respond-to(tablet) {
+            padding-left: 120px;
+        }
+    }
+}
+
+#map {
+    padding: 50px 0;
+    background: url('../images/map.jpg') 50% 50% no-repeat;
+    @include background-size(cover);
+
+    @include respond-to(tablet) {
+        padding: 100px 0;
+    }
+}
+
+#hero .card:before {
+    content: " ";
+    display: block;
+    width: 90px;
+    height: 80px;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    margin-left: -45px;
+    background: url('../images/24-7.svg') 50% 50% no-repeat;
+
+    @include respond-to(tablet) {
+        left: 10px;
+        margin-left: 0;
+    }
+}
+
+
+#map .card:before {
+    content: " ";
+    display: block;
+    width: 90px;
+    height: 80px;
+    position: absolute;
+    top: 13px;
+    left: 50%;
+    margin-left: -45px;
+    background: url('../images/stamp.svg') 50% 50% no-repeat;
+
+    @include respond-to(tablet) {
+        top: 6px;
+        left: 13px;
+        margin-left: 0;
+    }
+}
+

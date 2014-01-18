@@ -24,6 +24,18 @@ class App {
 
         add_image_size( 'headshot', 80, 80, true );
 
+        // Remove Default WordPress Junk in <head>
+        remove_action( 'wp_head', 'feed_links_extra' );
+        remove_action( 'wp_head', 'rsd_link' );
+        remove_action( 'wp_head', 'wlwmanifest_link' );
+        remove_action( 'wp_head', 'index_rel_link' );
+        remove_action( 'wp_head', 'parent_post_rel_link' );
+        remove_action( 'wp_head', 'start_post_rel_link' );
+        remove_action( 'wp_head', 'adjacent_posts_rel_link' );
+        remove_action( 'wp_head', 'wp_generator' );
+        remove_action( 'wp_head', 'wp_shortlink_wp_head' );
+        remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head' );
+
         add_action( 'wp_enqueue_scripts', array( $this, 'action_enqueue_scripts' ) );
         add_action( 'wp_enqueue_scripts', array( $this, 'action_enqueue_stylesheets' ) );
         add_action( 'wp_head', array( $this, 'init_typekit' ) );
@@ -33,18 +45,16 @@ class App {
     }
 
     function action_enqueue_scripts() {
-        /* Wordpress provided scripts */
-        wp_enqueue_script( 'jquery' );
-
         /* Header scripts */
         wp_enqueue_script( 'typekit', 'http://use.typekit.com/vrn4dxs.js' , null, $this->version, false );
-        wp_enqueue_script( 'respondjs', path_join( get_stylesheet_directory_uri(), 'js/respond.min.js' ), false, $this->version, false );
+        wp_enqueue_script( 'head', path_join( get_stylesheet_directory_uri(), 'js/head.min.js' ), array( 'jquery' ), $this->version, false );
 
         /* Footer scripts */
-        wp_enqueue_script( 'isotope', path_join( get_stylesheet_directory_uri(), 'js/isotope.pkgd.js' ), null, $this->version, true );
-        wp_enqueue_script( 'magnific', path_join( get_stylesheet_directory_uri(), 'js/jquery.magnific-popup.js' ), array( 'jquery' ), $this->version, true );
-        wp_enqueue_script( 'fitvids', path_join( get_stylesheet_directory_uri(), 'js/jquery.fitvids.js' ), null, $this->version, true );
-        wp_enqueue_script( 'main', path_join( get_stylesheet_directory_uri(), 'js/main.js' ), array( 'jquery' ), $this->version, true );
+        if ( !is_admin() ) {
+            wp_deregister_script( 'jquery' );
+            wp_enqueue_script( 'jquery', '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js', null, null, true);
+        }
+        wp_enqueue_script( 'main', path_join( get_stylesheet_directory_uri(), 'js/main.min.js' ), array( 'jquery' ), $this->version, true );
     }
 
     function action_enqueue_stylesheets() {
@@ -68,5 +78,21 @@ class App {
 
     function transform_markdown( $content ) {
         return Markdown( $content );
+    }
+
+    static function process_contact_form() {
+        if ( !is_page( 'contact' ) || $_SERVER['REQUEST_METHOD'] !== 'POST' ) {
+            return false;
+        }
+
+        $name = isset($_REQUEST['fullname']) ? $_REQUEST['fullname'] : null;
+        $email = isset($_REQUEST['email']) ? $_REQUEST['email'] : null;
+        $message = isset($_REQUEST['message']) ? $_REQUEST['message'] : null;
+
+        $to = get_option( 'admin_email' );
+        $headers = sprintf('From: %s <%s>', $name, $email) . "\r\n";
+        $subject = 'New Message from Okay Plus';
+
+        return wp_mail( $to, $subject, $message, $headers );
     }
 }

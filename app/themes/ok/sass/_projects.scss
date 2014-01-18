@@ -1,11 +1,11 @@
 body.post-type-archive-project {
     h1 {
         text-align: center;
-        margin-bottom: 2em;
     }
 }
 
 .project-excerpt {
+    position: relative;
     overflow: hidden;
     background: $light-grey;
     margin-bottom: 2em;
@@ -23,6 +23,23 @@ body.post-type-archive-project {
         font-size: 18px;
         text-transform: uppercase;
         font-weight: $bold;
+    }
+}
+
+html.js.csstransforms3d .project-excerpt {
+    @include transition(all 0.5s);
+    @include opacity(0);
+    @include transform(scale(1.25) translateY(100px));
+
+    &.show {
+        top: 0;
+        @include opacity(1);
+        @include transform(scale(1) translateY(0));
+    }
+
+    &:hover {
+        @include transition(all 0.25s);
+        @include transform(scale(1.1));
     }
 }
 
@@ -63,5 +80,13 @@ body.single-project {
         display: block;
         margin-bottom: 2em;
         @include box-shadow(0 0 3px rgba(0, 0, 0, 0.15));
+    }
+}
+
+html.js.csstransforms3d .project-images img {
+    @include transition(all 0.25s);
+
+    &:hover {
+        @include transform(scale(1.05));
     }
 }

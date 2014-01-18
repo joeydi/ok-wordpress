@@ -61,6 +61,10 @@ body.home {
             background: transparent url('../images/clock.png') 0 0;
         }
 
+        &.js-clock:after {
+            display: none;
+        }
+
         h2 {
             position: relative;
             z-index: 1;
@@ -83,6 +87,10 @@ body.home {
             }
         }
     }
+}
+
+.testimonials {
+    @include transform(perspective(2500px));
 }
 
 .testimonial {
@@ -241,5 +249,36 @@ body.home {
         padding: 1.5em;
         background: $light-grey;
         border: none;
+    }
+}
+
+html.js.csstransforms3d .testimonial {
+    @include transition(all 1s);
+    @include transform(rotateX(45deg) rotateY(-90deg));
+    @include transform-origin(110%, top);
+
+    &:nth-child(even) {
+        @include transform(rotateX(45deg) rotateY(90deg));
+        @include transform-origin(-10%, top);
+    }
+
+    &.show {
+        @include transform(rotateX(0deg) rotateY(0deg));
+    }
+}
+
+.clock-container {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    margin-left: -20px;
+
+    img {
+        position: absolute;
+        left: 0;
+        top: 0;
+        @include transform(rotate(0deg));
     }
 }
