@@ -75,6 +75,7 @@ body.page-services > footer {
 
     @include respond-to(tablet) {
         background: #ededee url('../images/service-app.jpg') 25% 50% no-repeat;
+        @include background-size(cover);
     }
 
     @include respond-to(widescreen) {

@@ -44,6 +44,7 @@ All built on battle-tested, open-source software.</h2>
             <div class="col-sm-6">
                 <h1>Web Application Development &amp; APIs</h1>
                 <h2>Design and development that respond to users’ behavior and environment based on screen size, platform and orientation.</h2>
+                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>
                 <ul>
                     <li><a href=""><img alt="Python" src="<?php bloginfo( 'stylesheet_directory' ); ?>/images/logos/python.png" /></a></li>
                     <li><a href=""><img alt="Django" src="<?php bloginfo( 'stylesheet_directory' ); ?>/images/logos/django.png" /></a></li>
