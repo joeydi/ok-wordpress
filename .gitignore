@@ -10,3 +10,4 @@ Thumbs.db
 # wordpress specific
 /wp-config.php
 /app/uploads/
+/app/cache/
