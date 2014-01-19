@@ -42,6 +42,7 @@ class App {
 
         add_filter( 'body_class', array( $this, 'post_body_class' ) );
         add_filter( 'the_content', array( $this, 'transform_markdown' ) );
+        add_filter( 'upload_mimes', array( $this, 'custom_upload_mimes' ) );
     }
 
     function action_enqueue_scripts() {
@@ -78,6 +79,12 @@ class App {
 
     function transform_markdown( $content ) {
         return Markdown( $content );
+    }
+
+    function custom_upload_mimes ( $existing_mimes ) {
+        $existing_mimes['vcf'] = 'text/x-vcard';
+
+        return $existing_mimes;
     }
 
     static function process_contact_form() {
