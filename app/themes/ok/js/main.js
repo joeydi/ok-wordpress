@@ -3,6 +3,7 @@
  * @depend jquery.magnific-popup.js
  * @depend jquery.fitvids.js
  * @depend jquery.waypoints.js
+ * @depend jquery.imagesloaded.js
  */
 
 var $ = $ || jQuery,
@@ -89,9 +90,11 @@ OK.init_project_archive = function() {
 OK.init_project = function() {
     var container = $('.project-images');
 
-    container.isotope({
-        itemSelector: 'div',
-        layoutMode: 'masonry'
+    container.imagesLoaded(function() {
+        container.isotope({
+            itemSelector: 'div',
+            layoutMode: 'masonry'
+        });
     });
 
     container.magnificPopup({
