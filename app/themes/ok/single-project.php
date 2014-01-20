@@ -62,8 +62,8 @@ get_header();
                     <h3><span class="glyphicon glyphicon-chevron-left"></span> Previous Project</h3>
                     <strong><?php echo get_the_title( $previous->ID ); ?></strong>
                     <p><?php echo implode( ', ', $roles ); ?></p>
-                    <?php endif; ?>
                 </a>
+                <?php endif; ?>
             </div>
             <div class="next col-xs-6">
                 <?php if ( $next = get_previous_post() ) : ?>
@@ -73,8 +73,12 @@ get_header();
                     <h3>Next Project <span class="glyphicon glyphicon-chevron-right"></span></h3>
                     <strong><?php echo get_the_title( $next->ID ); ?></strong>
                     <p><?php echo implode( ', ', $roles ); ?></p>
-                    <?php endif; ?>
                 </a>
+                <?php else : ?>
+                    <h3>That's all She Wrote!</h3>
+                    <p>Thanks for exploring my portfolio of recent<br />web design &amp; development projects.</p>
+                    <a class="btn" href="/contact/"><span class="glyphicon glyphicon-phone-alt"></span> Get In Touch</a>
+                <?php endif; ?>
             </div>
         </div>
     </div>
