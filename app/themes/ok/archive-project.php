@@ -13,10 +13,10 @@
         <div class="row">
             <?php while( have_posts() ) : the_post(); ?>
             <div class="col-sm-6 col-lg-4">
-                <div class="project-excerpt">
+                <a href="<?php the_permalink(); ?>" class="project-excerpt">
                     <?php if ( has_post_thumbnail() ) { the_post_thumbnail(); } ?>
-                    <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-                </div>
+                    <h2><?php the_title(); ?></h2>
+                </a>
             </div>
             <?php endwhile; ?>
         </div>

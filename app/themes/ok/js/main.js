@@ -80,13 +80,6 @@ OK.init_project_archive = function() {
     }
 
     $('.project-excerpt')
-        .css({
-            'cursor': 'pointer'
-        })
-        .click(function() {
-            var href = $(this).find('a').attr('href');
-            window.location.href = href;
-        })
         .waypoint({
             offset: '100%',
             continuous: true,

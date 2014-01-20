@@ -1,4 +1,5 @@
 .project-excerpt {
+    display: block;
     position: relative;
     overflow: hidden;
     background: $light-grey;
@@ -131,6 +132,10 @@ html.js.csstransforms .project-images img {
 
     strong {
         display: block;
+    }
+
+    p {
+        font-size: 16px;
     }
 
     .previous {
