@@ -10,27 +10,31 @@ get_header();
 
 ?>
 
+<div id="hero">
+    <div class="container">
+        <h1><?php the_title(); ?></h1>
+
+        <?php if ( $roles || $clients ) : ?>
+        <p class="project-meta">
+            <?php if ( $roles ) : ?>
+            <span class="glyphicon glyphicon-user"></span>
+            <strong>Role: </strong><?php echo implode( ', ', $roles ); ?>
+            <?php endif; ?>
+            
+            <?php if ( $clients ) : ?>
+            <span class="meta-spacer">&bull;</span>
+            <span class="glyphicon glyphicon-briefcase"></span>
+            <strong>Agency: </strong><?php echo implode( ', ', $clients ); ?>
+            <?php endif; ?>
+        </p>
+        <?php endif; ?>
+    </div>
+</div>
+
 <div id="content">
     <div class="container">
         <div class="project-heading row">
-            <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
-                <h1><?php the_title(); ?></h1>
-
-                <?php if ( $roles || $clients ) : ?>
-                <p class="project-meta">
-                    <?php if ( $roles ) : ?>
-                    <span class="glyphicon glyphicon-user"></span>
-                    <strong>Role: </strong><?php echo implode( ', ', $roles ); ?>
-                    <?php endif; ?>
-                    
-                    <?php if ( $clients ) : ?>
-                    <span class="meta-spacer">&bull;</span>
-                    <span class="glyphicon glyphicon-briefcase"></span>
-                    <strong>Agency: </strong><?php echo implode( ', ', $clients ); ?>
-                    <?php endif; ?>
-                </p>
-                <?php endif; ?>
-
+            <div class="col-md-10 col-lg-8">
                 <?php the_content(); ?>
             </div>
         </div>
