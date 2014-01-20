@@ -54,7 +54,7 @@
         <div class="row">
             <div class="col-sm-6 col-md-5 col-md-offset-1 col-lg-4">
                 <h2>Get In Touch</h2>
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
+                <p>Looking to hire me? Have a question? Just want to chat? Send me a note through this form and I'll get back to you as soon as possible. If you are interested in working together, send along as much info about your project as possible.</p>
             </div>
             <div class="col-sm-6 col-md-5 col-lg-offset-1">
                 <form role="form" method="post" action="<?php the_permalink(); ?>">
