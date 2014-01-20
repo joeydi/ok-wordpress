@@ -43,6 +43,10 @@ body > footer {
         overflow: hidden;
     }
 
+    #social a {
+        text-decoration: none;
+    }
+
     .row:first-child {
         @include respond-to(tablet) {
             margin-bottom: 2em;
