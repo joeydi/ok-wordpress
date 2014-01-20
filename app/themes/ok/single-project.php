@@ -34,7 +34,7 @@ get_header();
 <div id="content">
     <div class="container">
         <div class="project-heading row">
-            <div class="col-md-10 col-lg-8">
+            <div class="col-md-10">
                 <?php the_content(); ?>
             </div>
         </div>

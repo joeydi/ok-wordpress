@@ -3,7 +3,7 @@
 <div id="hero">
     <div class="container">
         <div class="row">
-            <h1 class="col-sm-12">I partner with brands and agencies, bringing over 10 years of design and development experience to the table.</h1>
+            <h1 class="col-lg-10">I partner with brands and agencies, bringing over 10 years of design and development experience to the table.</h1>
         </div>
     </div>
 </div>

@@ -138,7 +138,7 @@ html.js.csstransforms .project-images img {
         font-size: 16px;
     }
 
-    .previous {
+    .next {
         text-align: right;
 
         img {
@@ -149,7 +149,7 @@ html.js.csstransforms .project-images img {
         }
     }
 
-    .next {
+    .previous {
         img {
             @include respond-to(tablet) {
                 float: left;
@@ -170,12 +170,12 @@ html.js.csstransforms #project-pagination {
     }
 
     h3, strong, p {
-        @include transform(translateX(100px));
+        @include transform(translateX(-100px));
     }
 
     .next {
         h3, strong, p {
-            @include transform(translateX(-100px));
+            @include transform(translateX(100px));
         }
     }
 
