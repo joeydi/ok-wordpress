@@ -22,7 +22,9 @@
                         <a href="mailto:joeydi@okaypl.us">joeydi@okaypl.us</a>
                     </p>
                     <footer>
-                        <a href="<?php the_field( 'vcard', 'options' ); ?>">Download vCard &raquo;</a>
+                        <a href="<?php the_field( 'vcard', 'options' ); ?>">
+                            <span class="glyphicon glyphicon-save"></span> Download vCard
+                        </a>
                     </footer>
                 </div>
             </div>

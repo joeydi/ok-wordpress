@@ -124,12 +124,19 @@
         }
     }
 
-    footer {
+    footer a {
+        display: block;
         padding: 15px;
         font-size: 14px;
         font-weight: $bold;
         text-transform: uppercase;
-        background: darken($light-grey, 5%);
+        background-color: darken($light-grey, 5%);
+        @include transition(background-color 0.25s);
+
+        &:hover {
+            text-decoration: none;
+            background-color: darken($light-grey, 10%);
+        }
 
         @include respond-to(tablet) {
             padding-left: 120px;
