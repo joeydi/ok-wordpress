@@ -6,6 +6,13 @@
  * @depend jquery.imagesloaded.js
  */
 
+/*!
+* Okay Plus
+*
+* Copyright 2014, Joe di Stefano - http://okaypl.us
+* Released under the WTFPL license - http://sam.zoy.org/wtfpl/
+*/
+
 var $ = $ || jQuery,
     OK = OK || {};
 
@@ -112,6 +119,15 @@ OK.init_project = function() {
             enabled: true,
         }
     });
+
+    $('#project-pagination')
+        .waypoint({
+            offset: '100%',
+            continuous: true,
+            handler: function() {
+                $(this).addClass('show');
+            }
+        });
 };
 
 OK.init_video_post = function() {

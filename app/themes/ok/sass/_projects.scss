@@ -20,7 +20,7 @@
     }
 }
 
-html.js.csstransforms3d .project-excerpt {
+html.js.csstransforms .project-excerpt {
     @include transition(all 0.5s);
     @include opacity(0);
     @include transform(scale(1.25) translateY(100px));
@@ -78,10 +78,110 @@ body.single-project {
     }
 }
 
-html.js.csstransforms3d .project-images img {
+html.js.csstransforms .project-images img {
     @include transition(all 0.25s);
 
     &:hover {
         @include transform(scale(1.05));
+    }
+}
+
+#project-pagination {
+    background: $black;
+    color: $white;
+    overflow: hidden;
+
+    .container {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    a {
+        position: relative;
+        display: block;
+        color: $white;
+        cursor: pointer;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+
+    img {
+        display: inline-block;
+        max-width: 100px;
+        margin-bottom: 1em;
+
+        @include respond-to(tablet) {
+            margin-bottom: 0;
+        }
+
+        @include respond-to(desktop) {
+            max-width: 200px;
+        }
+    }
+
+    h3 {
+        margin: 0;
+        color: darken($light-grey, 10%);
+        text-transform: uppercase;
+        font-size: 14px;
+        font-weight: $bold;
+    }
+
+    strong {
+        display: block;
+    }
+
+    .previous {
+        text-align: right;
+
+        img {
+            @include respond-to(tablet) {
+                float: right;
+                margin-left: 1em;
+            }
+        }
+    }
+
+    .next {
+        img {
+            @include respond-to(tablet) {
+                float: left;
+                margin-right: 1em;
+            }
+        }
+    }
+}
+
+html.js.csstransforms #project-pagination {
+    * {
+        @include transition(all 0.75s);
+    }
+
+    a {
+        @include opacity(0);
+        @include transform(translateY(200px));
+    }
+
+    h3, strong, p {
+        @include transform(translateX(100px));
+    }
+
+    .next {
+        h3, strong, p {
+            @include transform(translateX(-100px));
+        }
+    }
+
+    &.show {
+        a {
+            @include opacity(1);
+            @include transform(translateY(0));
+        }
+
+        h3, strong, p {
+            @include transform(translateX(0));
+        }
     }
 }

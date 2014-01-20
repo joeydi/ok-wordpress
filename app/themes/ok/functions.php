@@ -39,6 +39,7 @@ class App {
         add_action( 'wp_enqueue_scripts', array( $this, 'action_enqueue_scripts' ) );
         add_action( 'wp_enqueue_scripts', array( $this, 'action_enqueue_stylesheets' ) );
         add_action( 'wp_head', array( $this, 'init_typekit' ) );
+        add_action( 'pre_get_posts', array( $this, 'modify_project_archive_query' ) );
 
         add_filter( 'body_class', array( $this, 'post_body_class' ) );
         add_filter( 'the_content', array( $this, 'transform_markdown' ) );
@@ -65,6 +66,14 @@ class App {
 
     function init_typekit() {
         echo '<script type="text/javascript">try{Typekit.load();}catch(e){}</script>';
+    }
+
+    function modify_project_archive_query( $query ) {
+        if ( is_admin() || !is_main_query() || $query->get( 'post_type' ) !== 'project' ) {
+            return false;
+        }
+
+        $query->set( 'posts_per_page', -1 );
     }
 
     function post_body_class( $classes ) {

@@ -51,4 +51,33 @@ get_header();
     </div>
 </div>
 
+<div id="project-pagination">
+    <div class="container">
+        <div class="row">
+            <div class="previous col-xs-6">
+                <?php if ( $previous = get_next_post() ) : ?>
+                <a href="<?php echo get_permalink( $previous->ID ); ?>">
+                    <?php $roles = wp_get_post_terms( $previous->ID, 'role', array( 'fields' => 'names' ) ); ?>
+                    <?php echo get_the_post_thumbnail( $previous->ID, 'medium' ); ?>
+                    <h3><span class="glyphicon glyphicon-chevron-left"></span> Previous Project</h3>
+                    <strong><?php echo get_the_title( $previous->ID ); ?></strong>
+                    <p><?php echo implode( ', ', $roles ); ?></p>
+                    <?php endif; ?>
+                </a>
+            </div>
+            <div class="next col-xs-6">
+                <?php if ( $next = get_previous_post() ) : ?>
+                <a href="<?php echo get_permalink( $next->ID ); ?>">
+                    <?php $roles = wp_get_post_terms( $next->ID, 'role', array( 'fields' => 'names' ) ); ?>
+                    <?php echo get_the_post_thumbnail( $next->ID, 'medium' ); ?>
+                    <h3>Next Project <span class="glyphicon glyphicon-chevron-right"></span></h3>
+                    <strong><?php echo get_the_title( $next->ID ); ?></strong>
+                    <p><?php echo implode( ', ', $roles ); ?></p>
+                    <?php endif; ?>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
 <?php get_footer(); ?>
