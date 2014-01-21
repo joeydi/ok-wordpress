@@ -13,6 +13,7 @@ body {
     font-family: 'effra', sans-serif;
     font-size: 18px;
     -webkit-font-smoothing: antialiased;
+    background-color: $light-grey;
     color: $black;
 }
 
@@ -154,6 +155,7 @@ body > footer {
 #content {
     position: relative;
     padding: 40px 0;
+    background-color: $white;
 
     @include respond-to(tablet) {
         padding: 60px 0;

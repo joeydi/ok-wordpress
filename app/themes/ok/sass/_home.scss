@@ -30,12 +30,9 @@ body.home {
     }
 
     #content {
-        margin-top: 30px;
-        padding-top: 30px;
+        padding-top: 60px;
 
-        @include respond-to(desktop) {
-            margin-top: 50px;
-        }
+
 
         &:before {
             content: " ";
@@ -44,9 +41,13 @@ body.home {
             height: 100%;
             position: absolute;
             left: 50%;
-            top: 0;
+            top: 40px;
             margin-left: -2px;
             background: $light-grey;
+
+            @include respond-to(desktop) {
+                top: 50px;
+            }
         }
 
         &:after {
@@ -56,7 +57,7 @@ body.home {
             height: 40px;
             position: absolute;
             left: 50%;
-            top: 0;
+            top: 40px;
             margin-left: -20px;
             background: transparent url('../images/clock.png') 0 0;
         }
@@ -272,8 +273,16 @@ html.js.csstransforms3d .testimonial {
     height: 40px;
     position: absolute;
     left: 50%;
-    top: 0;
+    top: 30px;
     margin-left: -20px;
+
+    @include respond-to(tablet) {
+        top: 40px;
+    }
+
+    @include respond-to(desktop) {
+        top: 50px;
+    }
 
     img {
         position: absolute;
