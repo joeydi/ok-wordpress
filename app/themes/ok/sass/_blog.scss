@@ -140,6 +140,10 @@
         -moz-osx-font-smoothing: grayscale;
     }
 
+    &:hover {
+        text-decoration: none;
+    }
+
     span {
         display: inline-block;
         text-indent: 100%;
