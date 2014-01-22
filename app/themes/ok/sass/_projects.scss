@@ -6,6 +6,7 @@ body.post-type-archive-project #hero h1 {
 
 .project-excerpt {
     display: block;
+    padding-top: 70%;
     position: relative;
     overflow: hidden;
     background: $light-grey;
@@ -14,6 +15,9 @@ body.post-type-archive-project #hero h1 {
     @include box-shadow(0 0 3px rgba(0, 0, 0, 0.15));
 
     img {
+        position: absolute;
+        left: 0;
+        top: 0;
         display: block;
         border-bottom: 1px solid darken($light-grey, 10%);
     }
@@ -28,7 +32,7 @@ body.post-type-archive-project #hero h1 {
 }
 
 html.js.csstransforms .project-excerpt {
-    @include transition(all 0.5s);
+    @include transition(all 0.85s);
     @include opacity(0);
     @include transform(scale(1.25) translateY(100px));
 
@@ -39,7 +43,7 @@ html.js.csstransforms .project-excerpt {
     }
 
     &:hover {
-        @include transition(all 0.25s);
+        @include transition(all 0.35s);
         @include transform(scale(1.1));
     }
 }
