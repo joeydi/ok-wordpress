@@ -181,7 +181,7 @@ html.js.csstransforms nav {
             font-weight: $bold;
             color: $white;
             font-size: 36px;
-            @include transition(background-color 0.35s);
+            // @include transition(background-color 0.35s);
         }
 
         a:hover,
