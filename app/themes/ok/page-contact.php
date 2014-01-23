@@ -18,7 +18,7 @@
                     <h1>Available for New Projects</h1>
                     <p>
                         <strong>Joe di Stefano</strong><br />
-                        480.459.6720<br />
+                        <a href="tel:4804596720">480.459.6720</a><br />
                         <a href="mailto:joeydi@okaypl.us">joeydi@okaypl.us</a>
                     </p>
                     <footer>
@@ -40,7 +40,7 @@
                     <h2>Send Mail To:</h2>
                     <p>
                         <strong>Okay Plus</strong><br />
-                        77 College St<br />
+                        77 College St, 3B<br />
                         Burlington, VT 05401
                     </p>
                 </div>
