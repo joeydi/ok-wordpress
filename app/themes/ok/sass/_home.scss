@@ -90,10 +90,6 @@ body.home {
     }
 }
 
-.testimonials {
-    @include transform(perspective(2500px));
-}
-
 .testimonial {
     position: relative;
     z-index: 1;
@@ -253,18 +249,26 @@ body.home {
     }
 }
 
-html.js.csstransforms3d .testimonial {
-    @include transition(all 1s);
-    @include transform(rotateX(45deg) rotateY(-90deg));
-    @include transform-origin(110%, top);
 
-    &:nth-child(even) {
-        @include transform(rotateX(45deg) rotateY(90deg));
-        @include transform-origin(-10%, top);
+
+html.js.csstransforms3d {
+    .testimonials {
+        @include perspective(10000);
     }
 
-    &.show {
-        @include transform(rotateX(0deg) rotateY(0deg));
+    .testimonial {
+        @include transition(all 1s);
+        @include transform(rotateX(10deg) rotateY(90deg));
+        @include transform-origin(110%, top);
+
+        &:nth-child(even) {
+            @include transform(rotateX(10deg) rotateY(-90deg));
+            @include transform-origin(-10%, top);
+        }
+
+        &.show {
+            @include transform(rotateX(0deg) rotateY(0deg));
+        }
     }
 }
 
