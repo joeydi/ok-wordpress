@@ -17,11 +17,11 @@
         <header>
             <div class="container">
                 <div class="row">
-                    <a id="logo" class="col-sm-3" href="/">
+                    <a id="logo" class="col-xs-6 col-sm-3" href="/">
                         <img src="<?php bloginfo( 'stylesheet_directory' ); ?>/images/logo.svg" alt="Okay Plus / Design &amp; Technology" />
                     </a>
-                    <a id="menu-trigger"><i class="icon-reorder"></i></a>
-                    <nav class="col-sm-9">
+                    <a id="menu-trigger" class="col-xs-6 visible-xs"><i class="icon-list"></i></a>
+                    <nav class="col-xs-12 col-sm-9">
                         <ul id="menu">
                             <li><a href="/services/">Services</a></li>
                             <li><a href="/work/">Work</a></li>

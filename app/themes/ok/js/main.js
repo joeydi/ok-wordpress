@@ -16,6 +16,15 @@
 var $ = $ || jQuery,
     OK = OK || {};
 
+OK.init_mobile_nav = function () {
+    var trigger = $('#menu-trigger'),
+        menu = $('nav');
+
+    trigger.click(function () {
+        menu.toggleClass('active');
+    });
+};
+
 OK.init_clock = function() {
     if (!$('body').hasClass('home')) {
         return false;
@@ -128,6 +137,7 @@ OK.init_video_post = function() {
 }
 
 $(document).ready(function() {
+    OK.init_mobile_nav();
     OK.init_clock();
     OK.init_testimonials();
     OK.init_project_archive();

@@ -18,9 +18,13 @@ body {
 }
 
 body > header {
-    padding: 35px 0;
+    padding: 20px 0;
     background: $red;
     border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+
+    @include respond-to(tablet) {
+        padding: 35px 0;
+    }
 }
 
 body > footer {
@@ -77,8 +81,6 @@ body > footer {
 
 #logo {
     display: block;
-    margin-bottom: 2em;
-    text-align: center;
 
     @include respond-to(tablet) {
         margin-bottom: 0;
@@ -90,21 +92,80 @@ body > footer {
     }
 }
 
+#menu-trigger {
+    text-align: right;
+    font-size: 40px;
+    line-height: 30px;
+    color: $white;
+    cursor: pointer;
+
+    &:hover {
+        text-decoration: none;
+    }
+
+    i {
+        line-height: 30px;
+    }
+}
+
+nav {
+    max-height: 0;
+    margin-top: 20px;
+    margin-bottom: -20px;
+    background-color: #f07b61;
+    overflow: hidden;
+    @include transition(padding 0.35s, height 0.35s);
+
+    &.active {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        max-height: 1000px;
+    }
+
+    @include respond-to(tablet) {
+        max-height: none;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        background-color: transparent;
+
+        &.active {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+    }
+}
+
+html.js.csstransforms3d nav {
+    @include perspective(800);
+
+    #menu {
+        @include transform-origin(left, top);
+        @include transition(all 0.35s);
+        @include opacity(0);
+        @include transform(rotateX(-90deg));
+    }
+
+    &.active #menu {
+        @include opacity(1);
+        @include transform(rotateX(0));
+    }
+
+    @include respond-to(tablet) {
+        #menu {
+            @include opacity(1);
+            @include transform(rotateX(0));
+        }
+    }
+}
+
 #menu {
     margin: 0;
     padding: 0;
-    text-align: center;
-
-    @include respond-to(tablet) {
-        text-align: right;
-    }
+    list-style-type: none;
 
     li {
-        display: inline-block;
-        height: 30px;
-        line-height: 30px;
-        padding: 0 20px;
-
         &:last-child {
             padding-right: 0;
         }
@@ -114,12 +175,27 @@ body > footer {
             text-transform: uppercase;
             font-weight: $bold;
             color: $white;
-            font-size: 1.1em;
-            letter-spacing: 1px;
+            font-size: 36px;
         }
 
         a:hover {
             text-decoration: none;
+        }
+    }
+
+    @include respond-to(tablet) {
+        text-align: right;
+
+        li {
+            height: 30px;
+            line-height: 30px;
+            display: inline-block;
+            padding: 0 20px;
+
+            a,
+            a:visited {
+                font-size: 20px;
+            }
         }
     }
 }
