@@ -45,6 +45,10 @@ class App {
         add_filter( 'body_class', array( $this, 'post_body_class' ) );
         add_filter( 'the_content', array( $this, 'transform_markdown' ) );
         add_filter( 'upload_mimes', array( $this, 'custom_upload_mimes' ) );
+        add_filter( 'next_posts_link_attributes', array( $this, 'posts_link_attributes' ) );
+        add_filter( 'previous_posts_link_attributes', array( $this, 'posts_link_attributes' ) );
+        add_filter( 'next_post_link', array( $this, 'post_link_attributes' ) );
+        add_filter( 'previous_post_link', array( $this, 'post_link_attributes' ) );
     }
 
     function action_enqueue_scripts() {
@@ -95,6 +99,14 @@ class App {
         $existing_mimes['vcf'] = 'text/x-vcard';
 
         return $existing_mimes;
+    }
+
+    function posts_link_attributes() {
+        return 'class="btn"';
+    }
+
+    function post_link_attributes( $output ) {
+        return str_replace( '<a href=', '<a class="btn" href=', $output );
     }
 
     static function process_contact_form() {

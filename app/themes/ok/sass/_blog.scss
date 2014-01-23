@@ -13,6 +13,14 @@
     }
 }
 
+.row:last-child {
+    .post,
+    .quote,
+    .link {
+        margin-bottom: 0;
+    }
+}
+
 .post {
     background: lighten($light-grey, 2%);
     @include border-radius(3px);
@@ -158,4 +166,44 @@
 .alignleft {
     float: left;
     margin-right: 1em;
+}
+
+#blog-pagination {
+    padding: 30px 0;
+    background-color: $black;
+    color: $white;
+
+    a {
+        color: $white;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+
+    a.btn {
+        display: inline-block;
+        border: 2px solid $white;
+        white-space: normal;
+        @include border-radius(5px);
+        @include transition(all 0.25s);
+
+        &:hover {
+            background: $white;
+            color: $red;
+        }
+
+        span {
+            display: none;
+            @include transition(none !important);
+
+            @include respond-to(tablet) {
+                display: inline-block;
+            }
+        }
+    }
+
+    .next {
+        text-align: right;
+    }
 }

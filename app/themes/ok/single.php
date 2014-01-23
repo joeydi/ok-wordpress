@@ -10,9 +10,17 @@
                 </div>
             </div>
         <?php endwhile; ?>
+    </div>
+</div>
+
+<div id="blog-pagination">
+    <div class="container">
         <div class="row">
-            <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
-                <?php posts_nav_link(); ?>
+            <div class="previous col-xs-6 col-md-5 col-md-offset-1 col-lg-4 col-lg-offset-2">
+                <?php previous_post_link( '%link', '<span class="glyphicon glyphicon-chevron-left"></span> %title' ); ?>
+            </div>
+            <div class="next col-xs-6 col-md-5 col-lg-4">
+                <?php next_post_link( '%link', '%title <span class="glyphicon glyphicon-chevron-right"></span>' ); ?>
             </div>
         </div>
     </div>
