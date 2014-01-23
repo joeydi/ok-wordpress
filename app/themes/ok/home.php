@@ -13,6 +13,23 @@
     </div>
 </div>
 
+<?php if ( is_single() ) : ?>
+
+<div id="blog-pagination">
+    <div class="container">
+        <div class="row">
+            <div class="previous col-xs-6 col-md-5 col-md-offset-1 col-lg-4 col-lg-offset-2">
+                <?php next_post_link( '%link', '<span class="glyphicon glyphicon-chevron-left"></span> %title' ); ?>
+            </div>
+            <div class="next col-xs-6 col-md-5 col-lg-4">
+                <?php previous_post_link( '%link', '%title <span class="glyphicon glyphicon-chevron-right"></span>' ); ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php elseif ( get_next_posts_link() || get_previous_posts_link() ) : ?>
+
 <div id="blog-pagination">
     <div class="container">
         <div class="row">
@@ -25,5 +42,7 @@
         </div>
     </div>
 </div>
+
+<?php endif; ?>
 
 <?php get_footer(); ?>

@@ -49,6 +49,9 @@ class App {
         add_filter( 'previous_posts_link_attributes', array( $this, 'posts_link_attributes' ) );
         add_filter( 'next_post_link', array( $this, 'post_link_attributes' ) );
         add_filter( 'previous_post_link', array( $this, 'post_link_attributes' ) );
+        add_filter( 'single_template', array( $this, 'blog_template' ) );
+        add_filter( 'search_template', array( $this, 'blog_template' ) );
+        add_filter( 'archive_template', array( $this, 'blog_template' ) );
     }
 
     function action_enqueue_scripts() {
@@ -107,6 +110,16 @@ class App {
 
     function post_link_attributes( $output ) {
         return str_replace( '<a href=', '<a class="btn" href=', $output );
+    }
+
+    function blog_template( $blog_template ) {
+        global $post;
+
+         if ( $post->post_type == 'post' || is_search() ) {
+              $blog_template = dirname( __FILE__ ) . '/home.php';
+         }
+
+         return $blog_template;
     }
 
     static function process_contact_form() {
