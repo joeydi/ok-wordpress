@@ -114,7 +114,7 @@ nav {
     margin-bottom: -20px;
     background-color: #f07b61;
     overflow: hidden;
-    @include transition(padding 0.35s, height 0.35s);
+    @include transition(all 0.25s);
 
     &.active {
         padding-top: 20px;
@@ -137,25 +137,23 @@ nav {
     }
 }
 
-html.js.csstransforms3d nav {
-    @include perspective(800);
-
+html.js.csstransforms nav {
     #menu {
-        @include transform-origin(left, top);
+        @include transform-origin(left, center);
         @include transition(all 0.35s);
         @include opacity(0);
-        @include transform(rotateX(-90deg));
+        @include transform(scale(0.85));
     }
 
     &.active #menu {
         @include opacity(1);
-        @include transform(rotateX(0));
+        @include transform(scale(1));
     }
 
     @include respond-to(tablet) {
         #menu {
             @include opacity(1);
-            @include transform(rotateX(0));
+            @include transform(scale(1));
         }
     }
 }
