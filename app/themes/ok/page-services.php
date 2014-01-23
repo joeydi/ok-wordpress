@@ -55,4 +55,15 @@ All built on battle-tested, open-source software.</h2>
     </div>
 </div>
 
+<div id="cta">
+    <div class="container">
+        <h3>Think we've got what you need?
+            <br />
+            <a class="btn" href="<?php echo home_url( '/work/' ); ?>">View My Work <span class="glyphicon glyphicon-chevron-right"></span></a>
+            <span class="or">or</span>
+            <a class="btn" href="<?php echo home_url( '/contact/' ); ?>">Get In Touch <span class="glyphicon glyphicon-chevron-right"></span></a>
+        </h3>
+    </div>
+</div>
+
 <?php get_footer(); ?>

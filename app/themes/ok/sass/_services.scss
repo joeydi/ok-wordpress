@@ -1,9 +1,48 @@
-body.page-services > footer {
+#cta {
+    padding: 30px;
     background: $black;
     color: $white;
 
+    h3 {
+        margin: 0;
+        text-align: center;
+    }
+
     a, a:visited, a:hover {
         color: $white;
+    }
+
+    a.btn {
+        display: inline-block;
+        margin: 0.5em;
+        border: 2px solid $white;
+        @include border-radius(5px);
+        @include transition(all 0.25s);
+
+        @include respond-to(tablet) {
+            margin: 1em;
+        }
+
+        &:hover {
+            background: $white;
+            color: $red;
+        }
+    }
+
+    br {
+        display: block;
+
+        @include respond-to(desktop) {
+            display: none;
+        }
+    }
+
+    .or {
+        display: none;
+
+        @include respond-to(tablet) {
+            display: inline;
+        }
     }
 }
 
