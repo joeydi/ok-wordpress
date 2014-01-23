@@ -3,6 +3,7 @@
  * @depend jquery.magnific-popup.js
  * @depend jquery.fitvids.js
  * @depend jquery.waypoints.js
+ * @depend fastclick.js
  * @depend jquery.imagesloaded.js
  */
 
