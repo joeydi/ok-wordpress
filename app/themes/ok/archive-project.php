@@ -14,7 +14,7 @@
             <?php while( have_posts() ) : the_post(); ?>
             <div class="col-sm-6 col-lg-4">
                 <a href="<?php the_permalink(); ?>" class="project-excerpt">
-                    <?php if ( has_post_thumbnail() ) { the_post_thumbnail(); } ?>
+                    <?php if ( has_post_thumbnail() ) { the_post_thumbnail( 'project-thumbnail' ); } ?>
                     <h2><?php the_title(); ?></h2>
                 </a>
             </div>

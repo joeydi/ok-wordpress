@@ -43,7 +43,7 @@ get_header();
             <?php $src = wp_get_attachment_image_src( get_sub_field('id'), 'full' ); ?>
             <div class="col-sm-6 col-lg-4">
                 <a href="<?php echo $src[0]; ?>">
-                    <?php echo wp_get_attachment_image( get_sub_field('id'), 'full' ); ?>
+                    <?php echo wp_get_attachment_image( get_sub_field('id'), 'project-thumbnail' ); ?>
                 </a>
             </div>
             <?php endwhile; ?>
