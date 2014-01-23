@@ -123,14 +123,17 @@ OK.init_project = function() {
         }
     });
 
-    $('#project-pagination')
-        .waypoint({
-            offset: '100%',
-            continuous: true,
-            handler: function() {
-                $(this).addClass('show');
-            }
-        });
+
+    $(window).load(function() {
+        $('#project-pagination')
+            .waypoint({
+                offset: '100%',
+                continuous: true,
+                handler: function() {
+                    $(this).addClass('show');
+                }
+            });
+    });
 };
 
 OK.init_video_post = function() {
