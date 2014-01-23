@@ -112,14 +112,24 @@ nav {
     max-height: 0;
     margin-top: 20px;
     margin-bottom: -20px;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
     background-color: #f07b61;
     overflow: hidden;
     @include transition(all 0.25s);
 
     &.active {
-        padding-top: 20px;
-        padding-bottom: 20px;
         max-height: 1000px;
+    }
+
+    #menu li a {
+        display: block;
+        padding: 5px 15px;
+        border-bottom: 2px solid $red;
+    }
+
+    #menu li:last-child a {
+        border-bottom: none;
     }
 
     @include respond-to(tablet) {
@@ -133,6 +143,10 @@ nav {
         &.active {
             padding-top: 0;
             padding-bottom: 0;
+        }
+
+        #menu li a {
+            padding: 0;
         }
     }
 }
