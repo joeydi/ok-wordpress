@@ -25,8 +25,7 @@
         <div class="row">
             <div class="col-sm-6 col-sm-offset-6 col-md-5 col-md-offset-7">
                 <h1>Content Management Systems</h1>
-                <h2>Custom interfaces for managing everything from marketing websites to editorial content and geodata.
-All built on battle-tested, open-source software.</h2>
+                <h2>Custom interfaces for managing everything from marketing websites to editorial content and geodata. All built on battle-tested, open-source software.</h2>
                 <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>
                 <ul>
                     <li><a href=""><img alt="WordPress" src="<?php bloginfo( 'stylesheet_directory' ); ?>/images/logos/wordpress.png" /></a></li>
@@ -57,7 +56,7 @@ All built on battle-tested, open-source software.</h2>
 
 <div id="cta">
     <div class="container">
-        <h3>Think we've got what you need?
+        <h3>Think I've got what you need?
             <br />
             <a class="btn" href="<?php echo home_url( '/work/' ); ?>">View My Work <span class="glyphicon glyphicon-chevron-right"></span></a>
             <span class="or">or</span>
