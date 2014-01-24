@@ -1,3 +1,48 @@
+#hero {
+    form {
+        margin-bottom: 1em;
+
+        @include respond-to(tablet) {
+            margin-bottom: 0;
+        }
+    }
+    input,
+    button {
+        border: none;
+        color: $red;
+        text-transform: uppercase;
+        font-weight: $bold;
+    }
+
+    .input-group-btn button {
+        border: 1px solid $white;
+    }
+
+    .btn-default {
+        color: $red;
+    }
+
+    .btn-group {
+        margin-right: 26px;
+    }
+
+    .dropdown-menu {
+        border: 2px solid $red;
+        background-color: $light-red;
+        @include box-shadow(none);
+
+        a {
+            color: $white;
+            text-transform: uppercase;
+            font-weight: $bold;
+
+            &:hover {
+                background-color: $red;
+            }
+        }
+    }
+}
+
 .post,
 .quote,
 .link {

@@ -13,7 +13,7 @@ get_header();
 <div id="hero">
     <div class="container">
         <div class="row">
-            <div class="col-sm-8">
+            <div class="col-sm-9">
                 <h1><?php the_title(); ?></h1>
 
                 <?php if ( $roles || $clients ) : ?>
@@ -34,7 +34,7 @@ get_header();
                 </div>
                 <?php endif; ?>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <?php if ( $url = get_field( 'url' ) ) : ?>
                 <a href="<?php echo $url; ?>" class="btn">View Website <span class="glyphicon glyphicon-chevron-right"></span></a>
                 <?php endif; ?>

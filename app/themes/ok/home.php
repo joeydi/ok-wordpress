@@ -1,5 +1,35 @@
 <?php get_header(); ?>
 
+<?php if ( !is_single() ) : ?>
+    <div id="hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <?php get_search_form(); ?>
+                </div>
+                <div class="col-sm-8">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            Archives <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <?php wp_get_archives( array( 'type' => 'monthly', 'limit' => 12 ) ); ?>
+                        </ul>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            Tags <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <?php wp_list_categories( array( 'title_li' => '', 'taxonomy' => 'post_tag', 'orderby' => 'count', 'number' => 12 ) ); ?>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
+
 <div id="content">
     <div class="container">
         <?php while ( have_posts() ) : the_post(); ?>
