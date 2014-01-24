@@ -51,9 +51,12 @@ get_header();
             </div>
         </div>
         <div class="project-images row">
-            <?php while( has_sub_field( 'images' ) ) : ?>
+            <?php
+                $images = get_field( 'images' );
+                $col_class = count( $images ) < 3 ? 'col-sm-6' : 'col-sm-6 col-lg-4';
+                while( has_sub_field( 'images' ) ) : ?>
             <?php $src = wp_get_attachment_image_src( get_sub_field('id'), 'full' ); ?>
-            <div class="col-sm-6 col-lg-4">
+            <div class="<?php echo $col_class; ?>">
                 <a href="<?php echo $src[0]; ?>">
                     <?php echo wp_get_attachment_image( get_sub_field('id'), 'project-thumbnail' ); ?>
                 </a>
