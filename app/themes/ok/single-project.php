@@ -12,22 +12,34 @@ get_header();
 
 <div id="hero">
     <div class="container">
-        <h1><?php the_title(); ?></h1>
+        <div class="row">
+            <div class="col-sm-8">
+                <h1><?php the_title(); ?></h1>
 
-        <?php if ( $roles || $clients ) : ?>
-        <p class="project-meta">
-            <?php if ( $roles ) : ?>
-            <span class="glyphicon glyphicon-user"></span>
-            <strong>Role: </strong><?php echo implode( ', ', $roles ); ?>
-            <?php endif; ?>
-            
-            <?php if ( $clients ) : ?>
-            <span class="meta-spacer">&bull;</span>
-            <span class="glyphicon glyphicon-briefcase"></span>
-            <strong>Agency: </strong><?php echo implode( ', ', $clients ); ?>
-            <?php endif; ?>
-        </p>
-        <?php endif; ?>
+                <?php if ( $roles || $clients ) : ?>
+                <div class="project-meta">
+                    <?php if ( $roles ) : ?>
+                    <p>
+                        <span class="glyphicon glyphicon-user"></span>
+                        <strong>Role: </strong><?php echo implode( ', ', $roles ); ?>
+                    </p>
+                    <?php endif; ?>
+                    
+                    <?php if ( $clients ) : ?>
+                    <p>
+                        <span class="glyphicon glyphicon-briefcase"></span>
+                        <strong>Agency: </strong><?php echo implode( ', ', $clients ); ?>
+                    </p>
+                    <?php endif; ?>
+                </div>
+                <?php endif; ?>
+            </div>
+            <div class="col-sm-4">
+                <?php if ( $url = get_field( 'url' ) ) : ?>
+                <a href="<?php echo $url; ?>" class="btn">View Website <span class="glyphicon glyphicon-chevron-right"></span></a>
+                <?php endif; ?>
+            </div>
+        </div>
     </div>
 </div>
 
