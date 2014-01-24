@@ -21,7 +21,7 @@
                             Tags <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
-                            <?php wp_list_categories( array( 'title_li' => '', 'taxonomy' => 'post_tag', 'orderby' => 'count', 'number' => 12 ) ); ?>
+                            <?php wp_list_categories( array( 'title_li' => '', 'taxonomy' => 'post_tag', 'orderby' => 'count', 'order' => 'DESC', 'number' => 12 ) ); ?>
                         </ul>
                     </div>
                 </div>
