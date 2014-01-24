@@ -4,6 +4,7 @@
  * @depend jquery.fitvids.js
  * @depend jquery.waypoints.js
  * @depend fastclick.js
+ * @depend bootstrap.js
  * @depend jquery.imagesloaded.js
  */
 
