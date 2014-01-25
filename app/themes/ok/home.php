@@ -4,10 +4,10 @@
     <div id="hero">
         <div class="container">
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-4 col-md-4 col-md-offset-1 col-lg-4 col-lg-offset-2">
                     <?php get_search_form(); ?>
                 </div>
-                <div class="col-sm-8">
+                <div class="col-sm-6">
                     <div class="btn-group">
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                             Archives <span class="caret"></span>
