@@ -248,7 +248,42 @@ body.home {
     }
 }
 
+html.js.csstransforms3d .home #hero {
+    * {
+        @include transform(translateX(40px));
+        @include opacity(0);
+    }
 
+    h1 {
+        @include transition(all 0.25s);
+    }
+
+    p {
+        @include transition(all 0.35s);
+    }
+
+    a {
+        @include transition(all 0.5s);
+    }
+
+    a:last-child {
+        @include transition(all 0.75s);
+    }
+
+    img {
+        @include transform-origin(left, bottom);
+        @include transform(translateX(40px) translateY(0) rotate(3deg));
+        @include transition(all 0.85s);
+        @include opacity(1);
+    }
+    
+    &.active {
+        * {
+            @include transform(translateX(0) translateY(0) rotate(0));
+            @include opacity(1);
+        }
+    }
+}
 
 html.js.csstransforms3d {
     .testimonials {

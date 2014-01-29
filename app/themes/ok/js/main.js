@@ -69,6 +69,8 @@ OK.init_testimonials = function() {
         return false;
     }
 
+    $('#hero').addClass('active');
+
     $('.testimonial')
         .waypoint({
             offset: '100%',
