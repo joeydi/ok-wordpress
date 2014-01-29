@@ -141,21 +141,51 @@ nav {
 
 html.js.csstransforms nav {
     #menu {
+        @include perspective(1000);
         @include transform-origin(left, center);
         @include transition(all 0.35s);
         @include opacity(0);
         @include transform(scale(0.85));
+
+        li {
+            @include transform-origin(left, top);
+            @include transform(scale(1.25));
+        }
+
+        li:nth-child(1) {
+            @include transition(all 0.5s);
+        }
+
+        li:nth-child(2) {
+            @include transition(all 0.65s);
+        }
+
+        li:nth-child(3) {
+            @include transition(all 0.8s);
+        }
+
+        li:nth-child(4) {
+            @include transition(all 0.95s);
+        }
     }
 
     &.active #menu {
         @include opacity(1);
         @include transform(scale(1));
+
+        li {
+            @include transform(scale(1));
+        }
     }
 
     @include respond-to(tablet) {
         #menu {
             @include opacity(1);
             @include transform(scale(1));
+
+            li {
+                @include transform(scale(1));
+            }
         }
     }
 }
