@@ -56,6 +56,14 @@
     @include respond-to(desktop) {
         margin-bottom: 100px;
     }
+
+    p,
+    ol,
+    ul,
+    blockquote,
+    iframe {
+        margin-bottom: 1em;
+    }
 }
 
 .row:last-child {
