@@ -273,7 +273,7 @@ html.js.csstransforms3d .home #hero {
     img {
         @include transform-origin(left, bottom);
         @include transform(translateX(40px) translateY(0) rotate(3deg));
-        @include transition(all 0.85s);
+        @include transition(all 0.5s);
         @include opacity(1);
     }
     
