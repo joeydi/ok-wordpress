@@ -124,13 +124,14 @@ html.js.csstransforms .project-images img {
 
     a.btn {
         display: inline-block;
-        border: 2px solid $white;
+        background: $white;
+        color: $red;
         @include border-radius(5px);
         @include transition(all 0.25s);
 
         &:hover {
-            background: $white;
-            color: $red;
+            background: $red;
+            color: $white;
         }
 
         span {
