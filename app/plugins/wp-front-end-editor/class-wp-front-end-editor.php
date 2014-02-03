@@ -2,10 +2,12 @@
 
 class WP_Front_End_Editor {
 
-	public $version = '0.7.4';
-	public $plugin = 'wp-front-end-editor/wp-front-end-editor.php';
+	const VERSION = '0.7.10.1';
+	const PLUGIN = 'wp-front-end-editor/wp-front-end-editor.php';
 
 	private static $instance;
+	
+	private $wp_fee;
 
 	private function url( $path ) {
 
@@ -98,9 +100,8 @@ class WP_Front_End_Editor {
 
 		}
 
-		register_activation_hook( $this->plugin, array( $this, 'activate' ) );
+		register_activation_hook( self::PLUGIN, array( $this, 'activate' ) );
 
-		add_action( 'after_setup_theme', array( $this, 'after_setup_theme' ) ); // temporary
 		add_action( 'init', array( $this, 'init' ) );
 
 	}
@@ -113,15 +114,9 @@ class WP_Front_End_Editor {
 
 	public function activate() {
 
-		add_rewrite_endpoint( 'edit', EP_PERMALINK | EP_PAGES );
+		add_rewrite_endpoint( 'edit', EP_PERMALINK | EP_PAGES | EP_ROOT );
 
 		flush_rewrite_rules();
-
-	}
-
-	public function after_setup_theme() {
-
-		add_theme_support( 'front-end-editor' );
 
 	}
 
@@ -129,14 +124,10 @@ class WP_Front_End_Editor {
 
 		global $pagenow, $wp_post_statuses;
 
-		if ( ! current_theme_supports( 'front-end-editor' ) )
-
-			return;
-
 		// Lets auto-drafts pass as drafts by WP_Query.
 		$wp_post_statuses['auto-draft']->protected = true;
 
-		add_rewrite_endpoint( 'edit', EP_PERMALINK | EP_PAGES );
+		add_rewrite_endpoint( 'edit', EP_PERMALINK | EP_PAGES | EP_ROOT );
 
 		add_action( 'wp', array( $this, 'wp' ) );
 
@@ -163,7 +154,7 @@ class WP_Front_End_Editor {
 	public function wp() {
 
 		global $post, $post_type, $post_type_object;
-
+		
 		add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ) );
 
 		add_filter( 'get_edit_post_link', array( $this, 'get_edit_post_link' ), 10, 3 );
@@ -172,7 +163,7 @@ class WP_Front_End_Editor {
 		if ( ! $this->is_edit() )
 
 			return;
-
+		
 		if ( ! $post )
 
 			wp_die( __( 'You attempted to edit an item that doesn&#8217;t exist. Perhaps it was deleted?' ) );
@@ -191,8 +182,6 @@ class WP_Front_End_Editor {
 		require_once( ABSPATH . '/wp-admin/includes/admin.php' );
 		require_once( ABSPATH . '/wp-admin/includes/meta-boxes.php' );
 
-		set_current_screen( $post_type );
-
 		add_filter( 'show_admin_bar', '__return_true' );
 
 		add_action( 'wp_head', array( $this, 'wp_head' ) );
@@ -201,7 +190,9 @@ class WP_Front_End_Editor {
 		add_action( 'admin_bar_menu', array( $this, 'admin_bar_menu' ), 10 );
 		add_action( 'wp_before_admin_bar_render', array( $this, 'wp_before_admin_bar_render' ), 100 );
 
-		add_filter( 'the_title', array( $this, 'the_title' ), 20, 2 );
+		add_filter( 'post_class', array( $this, 'post_class' ) );
+		add_filter( 'body_class', array( $this, 'body_class' ) );
+		add_filter( 'the_title', array( $this, 'the_title' ) );
 		add_filter( 'the_content', array( $this, 'the_content' ), 20 );
 		add_filter( 'wp_link_pages', '__return_empty_string', 20 );
 		add_filter( 'post_thumbnail_html', array( $this, 'post_thumbnail_html' ), 10, 5 );
@@ -213,7 +204,8 @@ class WP_Front_End_Editor {
 
 		$post = get_post( $id );
 
-		if ( $post->post_type === 'revision' )
+		if ( $post->post_type === 'revision'
+			|| ! empty( $this->wp_fee['admin_edit_link'] ) )
 
 			return $link;
 
@@ -241,7 +233,9 @@ class WP_Front_End_Editor {
 
 	public function wp_head() {
 
-		global $post, $wp_locale, $hook_suffix, $current_screen;
+		global $post, $post_type, $wp_locale, $hook_suffix, $current_screen;
+
+		set_current_screen( $post_type );
 
 		$admin_body_class = preg_replace( '/[^a-z0-9_-]+/i', '-', $hook_suffix );
 
@@ -256,6 +250,8 @@ class WP_Front_End_Editor {
 			isRtl = <?php echo (int) is_rtl(); ?>;
 		</script><?php
 
+		unset( $GLOBALS['current_screen'] );
+
 	}
 
 	public function wp_enqueue_scripts() {
@@ -263,62 +259,73 @@ class WP_Front_End_Editor {
 		global $post, $wp_version;
 
 		if ( $this->is_edit() ) {
-
-			wp_enqueue_style( 'wp-core-ui' , $this->url( '/css/wp-core-ui.css' ), false, $this->version, 'screen' );
-			wp_enqueue_style( 'wp-core-ui-colors' , $this->url( '/css/wp-core-ui-colors.css' ), false, $this->version, 'screen' );
+			
+			wp_enqueue_style( 'wp-core-ui' , $this->url( '/css/wp-core-ui.css' ), false, self::VERSION, 'screen' );
+			wp_enqueue_style( 'wp-core-ui-colors' , $this->url( '/css/wp-core-ui-colors.css' ), false, self::VERSION, 'screen' );
 			wp_enqueue_style( 'buttons' );
 			wp_enqueue_style( 'wp-auth-check' );
 
 			wp_enqueue_script( 'jquery' );
+			wp_enqueue_script( 'tipsy', $this->url( 'js/jquery.tipsy.js' ), array( 'jquery' ), self::VERSION, true );
 			wp_enqueue_script( 'heartbeat' );
-			wp_enqueue_script( 'postbox', admin_url( 'js/postbox.js' ), array( 'jquery-ui-sortable' ), $this->version, true );
-			wp_enqueue_script( 'post-custom', version_compare( $wp_version, '3.9-alpha', '<' ) ? $this->url( '/js/post.js' ) : admin_url( 'js/post.js' ), array( 'suggest', 'wp-lists', 'postbox', 'heartbeat' ), $this->version, true );
+			wp_enqueue_script( 'postbox', admin_url( 'js/postbox.js' ), array( 'jquery-ui-sortable' ), self::VERSION, true );
+			wp_enqueue_script( 'post-custom', version_compare( $wp_version, '3.9-alpha', '<' ) ? $this->url( '/js/post.js' ) : admin_url( 'js/post.js' ), array( 'suggest', 'wp-lists', 'postbox', 'heartbeat' ), self::VERSION, true );
 
 			$vars = array(
-				'ok' => __('OK'),
-				'cancel' => __('Cancel'),
-				'publishOn' => __('Publish on:'),
-				'publishOnFuture' =>  __('Schedule for:'),
-				'publishOnPast' => __('Published on:'),
-				'dateFormat' => __('%1$s %2$s, %3$s @ %4$s : %5$s'),
-				'showcomm' => __('Show more comments'),
-				'endcomm' => __('No more comments found.'),
-				'publish' => __('Publish'),
-				'schedule' => __('Schedule'),
-				'update' => __('Update'),
-				'savePending' => __('Save as Pending'),
-				'saveDraft' => __('Save Draft'),
-				'private' => __('Private'),
-				'public' => __('Public'),
-				'publicSticky' => __('Public, Sticky'),
-				'password' => __('Password Protected'),
-				'privatelyPublished' => __('Privately Published'),
-				'published' => __('Published'),
-				'comma' => _x( ',', 'tag delimiter' ),
+				'ok' => __( 'OK' ),
+				'cancel' => __( 'Cancel' ),
+				'publishOn' => __( 'Publish on:' ),
+				'publishOnFuture' =>  __( 'Schedule for:' ),
+				'publishOnPast' => __( 'Published on:' ),
+				'dateFormat' => __( '%1$s %2$s, %3$s @ %4$s : %5$s' ),
+				'showcomm' => __( 'Show more comments' ),
+				'endcomm' => __( 'No more comments found.' ),
+				'publish' => __( 'Publish' ),
+				'schedule' => __( 'Schedule' ),
+				'update' => __( 'Update' ),
+				'savePending' => __( 'Save as Pending' ),
+				'saveDraft' => __( 'Save Draft' ),
+				'private' => __( 'Private' ),
+				'public' => __( 'Public' ),
+				'publicSticky' => __( 'Public, Sticky' ),
+				'password' => __( 'Password Protected' ),
+				'privatelyPublished' => __( 'Privately Published' ),
+				'published' => __( 'Published' ),
+				'comma' => _x( ',', 'tag delimiter' )
 			);
 
 			wp_localize_script( 'post-custom', 'postL10n', $vars );
 
 			wp_enqueue_script( 'wp-auth-check' );
-			wp_enqueue_script( 'tinymce-4', $this->url( '/js/tinymce/tinymce' . ( SCRIPT_DEBUG ? '' : '.min' ) . '.js' ), array(), '4.0.12', true );
-			wp_enqueue_script( 'wp-front-end-editor', $this->url( '/js/wp-front-end-editor.js' ), array(), $this->version, true );
+			wp_enqueue_script( 'tinymce-4', $this->url( '/js/tinymce/tinymce' . ( SCRIPT_DEBUG ? '' : '.min' ) . '.js' ), array(), '4.0.15', true );
+			wp_enqueue_script( 'wp-front-end-editor', $this->url( '/js/wp-front-end-editor.js' ), array(), self::VERSION, true );
 
 			$vars = array(
 				'postId' => $post->ID,
+				'postTitleRaw' => $post->post_title,
+				'postTitle' => get_the_title(),
 				'ajaxUrl' => admin_url( 'admin-ajax.php' ),
 				'updatePostNonce' => wp_create_nonce( 'update-post_' . $post->ID ),
-				'redirectPostLocation' => esc_url( apply_filters( 'redirect_post_location', '', $post->ID ) )
+				'redirectPostLocation' => esc_url( apply_filters( 'redirect_post_location', '', $post->ID ) ),
+				'blankGif' => includes_url( '/images/blank.gif' )
 			);
 
 			wp_localize_script( 'wp-front-end-editor', 'wpFee', $vars );
+			
+			wp_localize_script( 'wp-front-end-editor', 'autosaveL10n', array(
+				'autosaveInterval' => AUTOSAVE_INTERVAL,
+				'savingText' => __( 'Saving Draft&#8230;' ),
+				'saveAlert' => __( 'The changes you made will be lost if you navigate away from this page.' ),
+				'blog_id' => get_current_blog_id(),
+			) );
 
 			wp_enqueue_media( array( 'post' => $post ) );
 
-			wp_enqueue_style( 'wp-fee' , $this->url( '/css/wp-fee.css' ), false, $this->version, 'screen' );
+			wp_enqueue_style( 'wp-fee' , $this->url( '/css/wp-fee.css' ), false, self::VERSION, 'screen' );
 
 		} else {
 
-			wp_enqueue_script( 'wp-fee-adminbar', $this->url( '/js/wp-fee-adminbar.js' ), array(), $this->version, true );
+			wp_enqueue_script( 'wp-fee-adminbar', $this->url( '/js/wp-fee-adminbar.js' ), array( 'jquery' ), self::VERSION, true );
 
 			$vars = array(
 				'ajaxUrl' => admin_url( 'admin-ajax.php' ),
@@ -341,28 +348,32 @@ class WP_Front_End_Editor {
 			'parent' => 'top-secondary',
 			'title' => '<span class="ab-icon"></span>',
 			'meta' => array(
-				'title' => 'Cancel (Esc)'
+				'title' => 'Cancel (esc)'
 			),
 			'fee' => true
 		) );
 
+		$this->wp_fee['admin_edit_link'] = true;
+
 		$wp_admin_bar->add_node( array(
 			'id' => 'wp-fee-backend',
-			'href' => admin_url( 'post.php?action=edit&post=' . $post->ID ),
+			'href' => get_edit_post_link( $post->ID ),
 			'parent' => 'top-secondary',
 			'title' => '<span class="ab-icon"></span>',
 			'meta' => array(
-				'title' => 'Edit in Admin'
+				'title' => 'Edit in admin'
 			),
 			'fee' => true
 		) );
+
+		$this->wp_fee['admin_edit_link'] = false;
 
 		if ( $unpublished = in_array( $post->post_status, array( 'auto-draft', 'draft', 'pending' ) ) ) {
 
 			$wp_admin_bar->add_node( array(
 				'id' => 'wp-fee-publish',
 				'parent' => 'top-secondary',
-				'title' => '<span id="wp-fee-publish" class="wp-fee-submit button button-primary" title="' . __( 'Publish' ) . ' (Ctrl + S)" data-default="' . __( 'Publish' ) . '" data-working="' . __( 'Publishing&hellip;' ) . '" data-done="' . __( 'Published!' ) . '">' . __( 'Publish' ) . '</span>',
+				'title' => '<span id="wp-fee-publish" class="wp-fee-submit button button-primary" title="' . __( 'Publish' ) . ' (ctrl + S)" data-default="' . __( 'Publish' ) . '" data-working="' . __( 'Publishing&hellip;' ) . '" data-done="' . __( 'Published!' ) . '">' . __( 'Publish' ) . '</span>',
 				'meta' => array(
 					'class' => 'wp-core-ui'
 				),
@@ -374,7 +385,7 @@ class WP_Front_End_Editor {
 		$wp_admin_bar->add_node( array(
 			'id' => 'wp-fee-save',
 			'parent' => 'top-secondary',
-			'title' => '<span id="wp-fee-save" class="wp-fee-submit button' . ( $unpublished ? '' : ' button-primary' ) . '" title="' . ( $unpublished ? __( 'Save' ) : __( 'Update' ) ) . ' (Ctrl + S)" data-default="' . ( $unpublished ? __( 'Save' ) : __( 'Update' ) ) . '" data-working="' . ( $unpublished ? __( 'Saving&hellip;' ) : __( 'Updating&hellip;' ) ) . '" data-done="' . ( $unpublished ? __( 'Saved!' ) : __( 'Updated!' ) ) . '">' . ( $unpublished ? __( 'Save' ) : __( 'Update' ) ) . '</span>',
+			'title' => '<span id="wp-fee-save" class="wp-fee-submit button' . ( $unpublished ? '' : ' button-primary' ) . '" title="' . ( $unpublished ? __( 'Save' ) : __( 'Update' ) ) . ' (ctrl + S)" data-default="' . ( $unpublished ? __( 'Save' ) : __( 'Update' ) ) . '" data-working="' . ( $unpublished ? __( 'Saving&hellip;' ) : __( 'Updating&hellip;' ) ) . '" data-done="' . ( $unpublished ? __( 'Saved!' ) : __( 'Updated!' ) ) . '">' . ( $unpublished ? __( 'Save' ) : __( 'Update' ) ) . '</span>',
 			'meta' => array(
 				'class' => 'wp-core-ui'
 			),
@@ -387,7 +398,7 @@ class WP_Front_End_Editor {
 			'parent' => 'top-secondary',
 			'title' => '<span class="ab-icon"></span>',
 			'meta' => array(
-				'title' => 'More Options'
+				'title' => 'More options'
 			),
 			'fee' => true
 		) );
@@ -402,7 +413,7 @@ class WP_Front_End_Editor {
 				'parent' => 'top-secondary',
 				'title' => '<span class="ab-icon"></span>',
 				'meta' => array(
-					'title' => 'Manage Tags'
+					'title' => 'Manage tags'
 				),
 				'fee' => true
 			) );
@@ -417,7 +428,7 @@ class WP_Front_End_Editor {
 				'parent' => 'top-secondary',
 				'title' => '<span class="ab-icon"></span>',
 				'meta' => array(
-					'title' => 'Manage Categories'
+					'title' => 'Manage categories'
 				),
 				'fee' => true
 			) );
@@ -456,58 +467,42 @@ class WP_Front_End_Editor {
 
 	}
 
-	public function wp_terms_checklist( $post ) {
+	public function post_class( $classes ) {
 
-		ob_start();
+        $classes[] = 'wp-fee-post';
 
-		require_once( ABSPATH . 'wp-admin/includes/template.php' );
-
-		wp_terms_checklist( $post->ID, array( 'taxonomy' => 'category' ) );
-
-		return ob_get_clean();
+        return $classes;
 
 	}
 
-	public function the_title( $title, $id ) {
+	public function body_class( $classes ) {
 
-		global $post, $wp_the_query, $wp_fee;
+        $classes[] = 'wp-fee-body';
 
-		if ( is_main_query()
-			&& in_the_loop()
-			&& $wp_the_query->queried_object->ID === $id
-			&& $this->really_did_action( 'wp_head' )
-			&& empty( $wp_fee['the_title'] ) ) {
+        return $classes;
 
-			$wp_fee['the_title'] = true;
+	}
 
-			if ( $post->post_status === 'auto-draft' ) {
+	public function the_title( $title ) {
 
-				$title = apply_filters( 'default_title', '', $post );
+        if ( empty( $title ) )
 
-			} else {
+        	$title = ' ';
 
-				$title = $post->post_title;
-
-			}
-
-			$title = '<div id="wp-fee-title-' . $post->ID . '" class="wp-fee-title">' . $title . '</div>';
-
-		}
-
-		return $title;
+        return $title;
 
 	}
 
 	public function the_content( $content ) {
 
-		global $post, $wp_fee;
+		global $post;
 
 		if ( is_main_query()
 			&& in_the_loop()
 			&& $this->really_did_action( 'wp_head' )
-			&& empty( $wp_fee['the_content'] ) ) {
+			&& empty( $this->wp_fee['the_content'] ) ) {
 
-			$wp_fee['the_content'] = true;
+			$this->wp_fee['the_content'] = true;
 
 			if ( $post->post_status === 'auto-draft' ) {
 
@@ -534,15 +529,15 @@ class WP_Front_End_Editor {
 
 	public function post_thumbnail_html( $html, $post_id, $post_thumbnail_id, $size, $attr ) {
 
-		global $post, $wp_the_query, $wp_fee;
+		global $post, $wp_the_query;
 
 		if ( is_main_query()
 			&& in_the_loop()
 			&& $wp_the_query->queried_object->ID === $post_id
 			&& $this->really_did_action( 'wp_head' )
-			&& empty( $wp_fee['the_post_thumbnail'] ) ) {
+			&& empty( $this->wp_fee['the_post_thumbnail'] ) ) {
 
-			$wp_fee['the_post_thumbnail'] = true;
+			$this->wp_fee['the_post_thumbnail'] = true;
 
 			require_once( ABSPATH . '/wp-admin/includes/post.php' );
 			require_once( ABSPATH . '/wp-admin/includes/media.php' );
@@ -567,7 +562,7 @@ class WP_Front_End_Editor {
 	// Not sure if this is a good idea, this could have unexpected consequences. But otherwise nothing shows up if the featured image is set in edit mode.
 	public function get_post_metadata( $n, $object_id, $meta_key, $single ) {
 
-		global $wp_the_query, $wp_fee;
+		global $wp_the_query;
 
 		if ( is_main_query()
 			&& in_the_loop()
@@ -575,13 +570,13 @@ class WP_Front_End_Editor {
 			&& $this->really_did_action( 'wp_head' )
 			&& $meta_key === '_thumbnail_id'
 			&& $single
-			&& empty( $wp_fee['filtering_get_post_metadata'] ) ) {
+			&& empty( $this->wp_fee['filtering_get_post_metadata'] ) ) {
 
-			$wp_fee['filtering_get_post_metadata'] = true;
+			$this->wp_fee['filtering_get_post_metadata'] = true;
 
 			$thumbnail_id = get_post_thumbnail_id( $object_id );
 
-			$wp_fee['filtering_get_post_metadata'] = false;
+			$this->wp_fee['filtering_get_post_metadata'] = false;
 
 			if ( $thumbnail_id )
 
@@ -763,7 +758,7 @@ class WP_Front_End_Editor {
 
 	public function admin_enqueue_scripts() {
 
-		wp_enqueue_script( 'wp-back-end-editor', $this->url( '/js/wp-back-end-editor.js' ), array(), $this->version, true );
+		wp_enqueue_script( 'wp-back-end-editor', $this->url( '/js/wp-back-end-editor.js' ), array(), self::VERSION, true );
 
 	}
 
@@ -776,6 +771,8 @@ class WP_Front_End_Editor {
 	public function meta_modal() {
 
 		global $post, $post_type, $post_type_object, $current_screen, $wp_meta_modal_sections;
+
+		set_current_screen( $post_type );
 
 		$this->add_meta_modal_section( 'submitdiv', __( 'Publish' ) , array( $this, 'meta_section_publish' ), 10, 10 );
 
@@ -845,6 +842,8 @@ class WP_Front_End_Editor {
 			$this->add_meta_modal_section( 'commentstatusdiv', __( 'Discussion' ), 'post_comment_status_meta_box', 30, 40 );
 
 		require_once( 'meta-modal-template.php' );
+		
+		unset( $GLOBALS['current_screen'] );
 
 	}
 

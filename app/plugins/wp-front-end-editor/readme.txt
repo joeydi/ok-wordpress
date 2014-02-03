@@ -3,8 +3,8 @@
 Contributors: avryl, wordpressdotorg, Joen, shaunandrews, kraftbj
 Tags: front-end editor, inline editing
 Requires at least: 3.8
-Tested up to: 3.8
-Stable tag: 0.7.4
+Tested up to: 3.8.1
+Stable tag: 0.7.10.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,7 +14,7 @@ Warning: this plugin is very experimental and not safe to use outside a test env
 
 If you found a bug or if you have ideas, add them to [the plugins Trac](https://plugins.trac.wordpress.org/plugin/wp-front-end-editor). We’ll also keep a list of tasks there.
 
-**Weekly IRC Chat:** Mondays, 16:00 UTC, #wordpress-ui
+**Weekly IRC Chat:** Tuesdays, 17:00 UTC, #wordpress-ui
 
 [Features as Plugins Tracking](http://make.wordpress.org/core/features-as-plugins/)  
 [Make WordPress UI Posts](http://make.wordpress.org/ui/tag/front-end-editor/)  
@@ -29,7 +29,56 @@ This is just an experiment!
 
 == Changelog ==
 
-= 0.7.3 =
+= 0.7.10.1 =
+
+* Fix onbeforeunload.
+
+= 0.7.10 =
+
+* Add TinyMCE tooltips.
+* Add TinyMCE paste as text button.
+* Fix title placeholder
+* Load TinyMCE toolbar on init.
+
+= 0.7.9.2 =
+
+* Fix meta modal in Chrome and Firefox.
+
+= 0.7.9 =
+
+* Update to TinyMCE 4.0.15.
+* Move all meta boxes under each other with scroll navigation.
+* Link the inline date to the modal section.
+* Fix empty thumbnail preview.
+
+= 0.7.8 =
+
+* Even better title guess.
+* Fixes media button and switch toolbar button in Firefox and IE.
+* Adds a dummy featured image to simulate to styles.
+* Avoid creating a global variable.
+* Convert version and plugin variables to constants.
+* Force get_the_title() to be true if there is no title.
+* Generalised link to back-end.
+
+= 0.7.7 =
+
+* Better title guess.
+
+= 0.7.6 =
+
+* Properly unset $current_screen.
+* Update post format class when changing it.
+
+= 0.7.5 =
+
+* Fade fast for inline TinyMCE containers.
+* Title now editable based on .entry-title instead of php filter.
+* Refresh page on update.
+* Unset $current_screen because it causes is_admin() to return true.
+* Require jQuery for wp-fee-adminbar.js.
+
+= 0.7.4 =
 
 * Update CSS resets for .wp-core-ui.
 
