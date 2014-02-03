@@ -142,50 +142,39 @@ nav {
 html.js.csstransforms nav {
     #menu {
         @include perspective(1000);
-        @include transform-origin(left, center);
-        @include transition(all 0.35s);
-        @include opacity(0);
-        @include transform(scale(0.85));
 
-        li {
-            @include transform-origin(left, top);
-            @include transform(scale(1.25));
+        li a {
+            @include transform-origin(left, center);
+            @include opacity(0);
+            @include transform(scale(0.85));
         }
 
-        li:nth-child(1) {
+        li:nth-child(1) a {
             @include transition(all 0.5s);
         }
 
-        li:nth-child(2) {
+        li:nth-child(2) a {
             @include transition(all 0.65s);
         }
 
-        li:nth-child(3) {
+        li:nth-child(3) a {
             @include transition(all 0.8s);
         }
 
-        li:nth-child(4) {
+        li:nth-child(4) a {
             @include transition(all 0.95s);
         }
     }
 
-    &.active #menu {
+    &.active #menu li a {
         @include opacity(1);
         @include transform(scale(1));
-
-        li {
-            @include transform(scale(1));
-        }
     }
 
     @include respond-to(tablet) {
-        #menu {
+        #menu li a {
             @include opacity(1);
             @include transform(scale(1));
-
-            li {
-                @include transform(scale(1));
-            }
         }
     }
 }
@@ -196,11 +185,14 @@ html.js.csstransforms nav {
     list-style-type: none;
 
     li {
+        border-bottom: 2px solid $red;
+
         &:last-child {
             padding-right: 0;
+            border-bottom: none;
 
             a {
-                border-bottom: none;
+                
             }
         }
 
@@ -208,7 +200,6 @@ html.js.csstransforms nav {
         a:visited {
             display: block;
             padding: 5px 15px;
-            border-bottom: 2px solid $red;
             text-transform: uppercase;
             font-weight: $bold;
             color: $white;
