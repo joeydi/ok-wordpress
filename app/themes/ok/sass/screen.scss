@@ -142,10 +142,6 @@ nav {
 html.js.csstransforms nav {
     #menu {
         @include perspective(1000);
-        // @include transform-origin(left, center);
-        // @include transition(all 0.35s);
-        // @include opacity(0);
-        // @include transform(scale(0.85));
 
         li a {
             @include transform-origin(left, center);
@@ -170,24 +166,15 @@ html.js.csstransforms nav {
         }
     }
 
-    &.active #menu {
-        // @include opacity(1);
-        // @include transform(scale(1));
-
-        li a {
-            @include opacity(1);
-            @include transform(scale(1));
-        }
+    &.active #menu li a {
+        @include opacity(1);
+        @include transform(scale(1));
     }
 
     @include respond-to(tablet) {
-        #menu {
+        #menu li a {
             @include opacity(1);
             @include transform(scale(1));
-
-            li {
-                @include transform(scale(1));
-            }
         }
     }
 }
