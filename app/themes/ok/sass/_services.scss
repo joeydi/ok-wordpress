@@ -1,7 +1,6 @@
 #cta {
     padding: 30px;
-    background: $black;
-    color: $white;
+    background: darken($light-grey, 5%);
 
     h3 {
         margin: 0;
@@ -9,13 +8,13 @@
     }
 
     a, a:visited, a:hover {
-        color: $white;
+        color: $red;
     }
 
     a.btn {
         display: inline-block;
         margin: 0.5em;
-        border: 2px solid $white;
+        background: $white;
         @include border-radius(5px);
         @include transition(all 0.25s);
 
@@ -24,8 +23,8 @@
         }
 
         &:hover {
-            background: $white;
-            color: $red;
+            background: $red;
+            color: $white;
         }
     }
 

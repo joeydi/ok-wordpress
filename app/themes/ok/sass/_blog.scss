@@ -223,27 +223,22 @@
 
 #blog-pagination {
     padding: 30px 0;
-    background-color: $black;
-    color: $white;
+    background: darken($light-grey, 5%);
 
-    a {
-        color: $white;
-
-        &:hover {
-            text-decoration: none;
-        }
+    a:hover {
+        text-decoration: none;
     }
 
     a.btn {
         display: inline-block;
-        border: 2px solid $white;
+        background: $white;
         white-space: normal;
         @include border-radius(5px);
         @include transition(all 0.25s);
 
         &:hover {
-            background: $white;
-            color: $red;
+            background: $red;
+            color: $white;
         }
 
         span {
