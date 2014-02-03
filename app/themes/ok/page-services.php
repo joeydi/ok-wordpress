@@ -26,11 +26,10 @@
             <div class="col-sm-6 col-sm-offset-6 col-md-5 col-md-offset-7">
                 <h1>Content Management Systems</h1>
                 <h2>Custom interfaces for managing everything from marketing websites to editorial content and geodata. All built on battle-tested, open-source software.</h2>
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>
+                <p>We build themes and plugins with extensibility and maintainabilty in mind, ensuring that your project will be flexible and powerful enough serve your business well into the future.</p>
                 <ul>
-                    <li><a href=""><img alt="WordPress" src="<?php bloginfo( 'stylesheet_directory' ); ?>/images/logos/wordpress.png" /></a></li>
-                    <li><a href=""><img alt="Drupal" src="<?php bloginfo( 'stylesheet_directory' ); ?>/images/logos/drupal.png" /></a></li>
-                    <li><a href="">Joomla</a></li>
+                    <li><a href="http://wordpress.org/"><img alt="WordPress" src="<?php bloginfo( 'stylesheet_directory' ); ?>/images/logos/wordpress.png" /></a></li>
+                    <li><a href="https://drupal.org/"><img alt="Drupal" src="<?php bloginfo( 'stylesheet_directory' ); ?>/images/logos/drupal.png" /></a></li>
                 </ul>
             </div>
         </div>
@@ -42,12 +41,12 @@
         <div class="row">
             <div class="col-sm-6">
                 <h1>Web Application Development &amp; APIs</h1>
-                <h2>Design and development that respond to users’ behavior and environment based on screen size, platform and orientation.</h2>
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>
+                <h2>Need something custom? Building a product or starting an online business?</h2>
+                <p>From location-based search APIs to web-based tools for data management and anaylsis, I have experience building software solutions for startups, publicly-traded companies, and government agencies alike.</p>
                 <ul>
-                    <li><a href=""><img alt="Python" src="<?php bloginfo( 'stylesheet_directory' ); ?>/images/logos/python.png" /></a></li>
-                    <li><a href=""><img alt="Django" src="<?php bloginfo( 'stylesheet_directory' ); ?>/images/logos/django.png" /></a></li>
-                    <li><a href="">PHP</a></li>
+                    <li><a href="http://www.python.org/"><img alt="Python" src="<?php bloginfo( 'stylesheet_directory' ); ?>/images/logos/python.png" /></a></li>
+                    <li><a href="https://www.djangoproject.com/"><img alt="Django" src="<?php bloginfo( 'stylesheet_directory' ); ?>/images/logos/django.png" /></a></li>
+                    <li><a href="http://php.net/"><img alt="PHP" src="<?php bloginfo( 'stylesheet_directory' ); ?>/images/logos/php.png" /></a></li>
                 </ul>
             </div>
         </div>
