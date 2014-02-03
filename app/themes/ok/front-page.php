@@ -39,4 +39,13 @@
     </div>
 </div>
 
+<div id="cta">
+    <div class="container">
+        <h3>Have a project in mind?
+            <br />
+            <a class="btn" href="<?php echo home_url( '/services/' ); ?>">See My Services <span class="glyphicon glyphicon-chevron-right"></span></a>
+        </h3>
+    </div>
+</div>
+
 <?php get_footer(); ?>
