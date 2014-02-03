@@ -4,7 +4,7 @@ the_post();
 
 $roles = wp_get_post_terms( $post->ID, 'role', array( 'fields' => 'names' ) );
 
-$clients = wp_get_post_terms( $post->ID, 'client', array( 'fields' => 'names' ) );
+$clients = wp_get_post_terms( $post->ID, 'client' );
 
 get_header();
 
@@ -28,7 +28,12 @@ get_header();
                     <?php if ( $clients ) : ?>
                     <p>
                         <span class="glyphicon glyphicon-briefcase"></span>
-                        <strong>Agency: </strong><?php echo implode( ', ', $clients ); ?>
+                        <strong>Agency: </strong>
+                        <?php foreach ($clients as $client) : if ( $url = get_field( 'url', 'client_' . $client->term_id ) ) : ?>
+                        <a href="<?php echo $url; ?>"><?php echo $client->name; ?></a>
+                        <?php else : ?>
+                        <?php echo $client->name; ?>
+                        <?php endif; endforeach; ?>
                     </p>
                     <?php endif; ?>
                 </div>
