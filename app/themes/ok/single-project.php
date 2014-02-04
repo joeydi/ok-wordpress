@@ -79,7 +79,7 @@ get_header();
                 <a href="<?php echo get_permalink( $previous->ID ); ?>">
                     <?php $roles = wp_get_post_terms( $previous->ID, 'role', array( 'fields' => 'names' ) ); ?>
                     <?php echo get_the_post_thumbnail( $previous->ID, 'medium' ); ?>
-                    <h3><span class="glyphicon glyphicon-chevron-left"></span> Previous Project</h3>
+                    <h3 class="btn"><span class="glyphicon glyphicon-chevron-left"></span> Previous Project</h3>
                     <strong><?php echo get_the_title( $previous->ID ); ?></strong>
                     <p><?php echo implode( ', ', $roles ); ?></p>
                 </a>
@@ -90,7 +90,7 @@ get_header();
                 <a href="<?php echo get_permalink( $next->ID ); ?>">
                     <?php $roles = wp_get_post_terms( $next->ID, 'role', array( 'fields' => 'names' ) ); ?>
                     <?php echo get_the_post_thumbnail( $next->ID, 'medium' ); ?>
-                    <h3>Next Project <span class="glyphicon glyphicon-chevron-right"></span></h3>
+                    <h3 class="btn">Next Project <span class="glyphicon glyphicon-chevron-right"></span></h3>
                     <strong><?php echo get_the_title( $next->ID ); ?></strong>
                     <p><?php echo implode( ', ', $roles ); ?></p>
                 </a>

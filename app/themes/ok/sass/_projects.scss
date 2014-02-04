@@ -58,8 +58,8 @@ html.js.csstransforms .project-excerpt {
     }
 
     &:hover {
-        @include transition(all 0.35s);
-        @include transform(scale(1.1));
+        @include transition(all 0.25s);
+        @include transform(scale(1.05));
     }
 }
 
@@ -110,12 +110,6 @@ html.js.csstransforms .project-images img {
 
 #project-pagination {
     background: darken($light-grey, 5%);
-    overflow: hidden;
-
-    .container {
-        padding-top: 20px;
-        padding-bottom: 20px;
-    }
 
     a {
         position: relative;
@@ -125,10 +119,19 @@ html.js.csstransforms .project-images img {
 
         &:hover {
             text-decoration: none;
+
+            h3 {
+                background: $red;
+                color: $white;
+            }
+        }
+
+        &.btn {
+            margin-top: 0.5em;
         }
     }
 
-    a.btn {
+    .btn {
         display: inline-block;
         background: $white;
         color: $red;
@@ -152,11 +155,15 @@ html.js.csstransforms .project-images img {
 
     img {
         display: inline-block;
-        max-width: 100px;
-        margin-bottom: 1em;
+        max-width: 120px;
+        margin-top: -30px;
+        margin-bottom: 10px;
+        @include box-shadow(0 0 3px rgba(0, 0, 0, 0.15));
 
         @include respond-to(tablet) {
-            margin-bottom: 0;
+            max-width: 160px;
+            margin-top: -1.5em;
+            margin-bottom: -1.5em;
         }
 
         @include respond-to(desktop) {
@@ -165,11 +172,16 @@ html.js.csstransforms .project-images img {
     }
 
     h3 {
-        margin: 0;
-        color: lighten($black, 10%);
+        margin: 0 0 0.5em;
+        color: $black;
         text-transform: uppercase;
         font-size: 14px;
         font-weight: $bold;
+
+        &.btn {
+            color: $red;
+            background: $white;
+        }
     }
 
     strong {
@@ -178,6 +190,13 @@ html.js.csstransforms .project-images img {
 
     p {
         font-size: 16px;
+        margin-bottom: 0;
+    }
+
+    .next,
+    .previous {
+        padding-top: 1em;
+        padding-bottom: 1em;
     }
 
     .next {
@@ -209,6 +228,11 @@ html.js.csstransforms #project-pagination {
     a {
         @include opacity(0);
         @include transform(translateY(200px));
+
+        &:hover img {
+            @include transition(all 0.25s);
+            @include transform(scale(1.05));
+        }
     }
 
     h3, strong, p {
