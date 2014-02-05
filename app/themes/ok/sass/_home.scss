@@ -137,10 +137,6 @@ body.home {
         width: 45%;
         margin: -200px 0 0 0;
 
-        &:first-child {
-            margin-top: 0;
-        }
-
         &:nth-child(even) {
             float: right;
 
@@ -159,8 +155,20 @@ body.home {
 
         &:before {
             right: -55px;
-            top: 22px;
+            top: 35px;
             margin-right: 0;
+        }
+
+        &:first-child {
+            margin-top: 0;
+        }
+
+        &:nth-child(2) {
+            margin-top: -300px;
+        }
+
+        &:nth-child(4) {
+            margin-top: -210px;
         }
     }
 
@@ -172,6 +180,15 @@ body.home {
 
         &:before {
             right: -65px;
+            top: 22px;
+        }
+
+        &:nth-child(2) {
+            margin-top: -240px;
+        }
+
+        &:nth-child(4) {
+            margin-top: -200px;
         }
     }
 
