@@ -126,9 +126,8 @@ body.home {
             }
 
             img {
-                float: right;
-                margin-left: 0;
-                margin-right: -105px;
+                left: auto;
+                right: 82px;
             }
         }
     }
@@ -224,9 +223,10 @@ body.home {
         }
 
         img {
-            float: left;
-            margin-left: -105px;
-            margin-top: -16px;
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            margin-top: -40px;
             border: 3px solid $white;
             @include border-radius(100%);
         }
@@ -243,6 +243,10 @@ body.home {
                 font-size: 100px;
                 font-family: sans-serif;
                 font-weight: bold;
+            }
+
+            img {
+                left: 82px;
             }
         }
 
