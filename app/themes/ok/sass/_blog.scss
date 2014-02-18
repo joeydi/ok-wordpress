@@ -79,8 +79,27 @@
     @include border-radius(3px);
     overflow: hidden;
 
-    .post-image img {
+    .post-image {
+        position: relative;
+
+        img {
+            width: 100%;
+        }
+    }
+
+    .image-source {
+        display: block;
+        position: absolute;
+        left: 0;
+        bottom: 0;
         width: 100%;
+        padding: 0.5em 1em;
+        background-color: #000;
+        background-color: rgba(0, 0, 0, 0.75);
+        text-align: right;
+        text-transform: uppercase;
+        font-size: 14px;
+        font-weight: $medium;
     }
 
     .post-content,
