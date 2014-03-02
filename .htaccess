@@ -2,8 +2,8 @@
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteBase /
-RewriteCond %{HTTP_HOST} !new-example.com$ [NC]
-RewriteRule ^(.*)$ http://new-example.com/$1 [L,R=301]
+RewriteCond %{HTTP_HOST} !okaypl.us$ [NC]
+RewriteRule ^(.*)$ http://okaypl.us/$1 [L,R=301]
 </IfModule>
 # END Domain Transfer
 
