@@ -33,6 +33,7 @@
         <div class="date">
             <span class="icon-clock"></span>
             <?php the_time( get_option( 'date_format' ) ); ?>
+            by <a href="<?php echo home_url( '/contact/' ); ?>"><?php the_author(); ?></a>
         </div>
 
         <?php if ( get_the_tags() ) : ?>
