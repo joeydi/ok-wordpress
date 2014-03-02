@@ -2,6 +2,8 @@
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteBase /
+RewriteCond %{REQUEST_URI} ^/files/.*
+RewriteRule ^(.*)$ http://static.okaypl.us/$1 [L,R=301]
 RewriteCond %{HTTP_HOST} !okaypl.us$ [NC]
 RewriteRule ^(.*)$ http://okaypl.us/$1 [L,R=301]
 </IfModule>
