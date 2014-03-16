@@ -23,6 +23,7 @@ class App {
         add_theme_support( 'post-formats', array( 'link', 'quote', 'video' ) );
 
         add_image_size( 'headshot', 80, 80, true );
+        add_image_size( 'featured', 720, 9999, false );
         add_image_size( 'project-thumbnail', 480, 9999, false );
 
         // Remove Default WordPress Junk in <head>
