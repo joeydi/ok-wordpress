@@ -2,7 +2,7 @@
 
     <?php if ( has_post_thumbnail() ) : ?>
     <div class="post-image">
-        <?php the_post_thumbnail(); ?>
+        <?php the_post_thumbnail( 'featured' ); ?>
         <?php $post_thumbnail_id = get_post_thumbnail_id(); ?>
         <?php $source_name = get_field( 'source_name', $post_thumbnail_id ); ?>
         <?php $source_url = get_field( 'source_url', $post_thumbnail_id ); ?>
