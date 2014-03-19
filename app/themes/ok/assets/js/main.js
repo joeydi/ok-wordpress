@@ -34,9 +34,9 @@ OK.init_clock = function() {
 
     var content = $('#content'),
         clock_container = $('<div class="clock-container"></div>'),
-        clock_outline = $('<img src="/app/themes/ok/images/clock-outline.svg" />'),
-        clock_minute_hand = $('<img src="/app/themes/ok/images/clock-minute-hand.svg" />'),
-        clock_hour_hand = $('<img src="/app/themes/ok/images/clock-hour-hand.svg" />');
+        clock_outline = $('<img src="/app/themes/ok/assets/images/clock-outline.svg" />'),
+        clock_minute_hand = $('<img src="/app/themes/ok/assets/images/clock-minute-hand.svg" />'),
+        clock_hour_hand = $('<img src="/app/themes/ok/assets/images/clock-hour-hand.svg" />');
 
     content.addClass('js-clock');
 

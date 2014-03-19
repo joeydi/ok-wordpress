@@ -1,11 +1,11 @@
 <?php
 
 /* Load required libraries */
-require_once( dirname( __FILE__ ) . '/inc/markdown.php' );
+require_once( dirname( __FILE__ ) . '/includes/markdown.php' );
 
 /* Load required custom includes */
-require_once( dirname( __FILE__ ) . '/inc/post-types.php' );
-require_once( dirname( __FILE__ ) . '/inc/taxonomies.php' );
+require_once( dirname( __FILE__ ) . '/includes/post-types.php' );
+require_once( dirname( __FILE__ ) . '/includes/taxonomies.php' );
 
 new App;
 new Post_Types;
@@ -58,19 +58,19 @@ class App {
     function action_enqueue_scripts() {
         /* Header scripts */
         wp_enqueue_script( 'typekit', 'http://use.typekit.com/vrn4dxs.js' , null, $this->version, false );
-        wp_enqueue_script( 'head', path_join( get_stylesheet_directory_uri(), 'js/head.min.js' ), array( 'jquery' ), $this->version, false );
+        wp_enqueue_script( 'head', path_join( get_stylesheet_directory_uri(), 'assets/js/head.min.js' ), array( 'jquery' ), $this->version, false );
 
         /* Footer scripts */
         if ( !is_admin() ) {
             wp_deregister_script( 'jquery' );
             wp_enqueue_script( 'jquery', '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js', null, null, true);
         }
-        wp_enqueue_script( 'main', path_join( get_stylesheet_directory_uri(), 'js/main.min.js' ), array( 'jquery' ), $this->version, true );
+        wp_enqueue_script( 'main', path_join( get_stylesheet_directory_uri(), 'assets/js/main.min.js' ), array( 'jquery' ), $this->version, true );
     }
 
     function action_enqueue_stylesheets() {
         wp_enqueue_style( 'bootstrap', '//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css', null, $this->version );
-        wp_enqueue_style( 'screen', path_join( get_stylesheet_directory_uri(), 'css/screen.css' ), null, $this->version );
+        wp_enqueue_style( 'screen', path_join( get_stylesheet_directory_uri(), 'assets/css/screen.css' ), null, $this->version );
     }
 
     function init_typekit() {

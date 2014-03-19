@@ -9,7 +9,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title><?php wp_title( '|', true, 'right' ); ?></title>
-        <link rel='shortcut icon' type='image/x-icon' href='<?php echo get_bloginfo( 'stylesheet_directory' ) . '/images/favicon.png'; ?>' />
+        <link rel='shortcut icon' type='image/x-icon' href='<?php echo get_bloginfo( 'stylesheet_directory' ) . '/assets/images/favicon.png'; ?>' />
         <?php wp_head(); ?>
     </head>
     <body <?php body_class(); ?>>
@@ -18,7 +18,7 @@
             <div class="container">
                 <div class="row">
                     <a id="logo" class="col-xs-6 col-sm-3" href="/">
-                        <img src="<?php bloginfo( 'stylesheet_directory' ); ?>/images/logo.svg" alt="Okay Plus / Design &amp; Technology" />
+                        <img src="<?php bloginfo( 'stylesheet_directory' ); ?>/assets/images/logo.svg" alt="Okay Plus / Design &amp; Technology" />
                     </a>
                     <a id="menu-trigger" class="col-xs-6 visible-xs"><i class="icon-list"></i></a>
                     <nav class="col-xs-12 col-sm-9">

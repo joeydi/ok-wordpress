@@ -11,7 +11,7 @@
             <?php endif; ?>
 
             <div class="col-sm-6">
-                <img class="headshot" src="<?php bloginfo( 'stylesheet_directory' ); ?>/images/headshot.jpg" />
+                <img class="headshot" src="<?php bloginfo( 'stylesheet_directory' ); ?>/assets/images/headshot.jpg" />
             </div>
             <div class="col-sm-6">
                 <div class="card">
