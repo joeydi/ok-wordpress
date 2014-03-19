@@ -66,6 +66,11 @@ class App {
             wp_enqueue_script( 'jquery', '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js', null, null, true);
         }
         wp_enqueue_script( 'main', path_join( get_stylesheet_directory_uri(), 'assets/js/main.min.js' ), array( 'jquery' ), $this->version, true );
+
+        if ( is_page( 'network' ) ) {
+            wp_enqueue_script( 'paper', path_join( get_stylesheet_directory_uri(), 'assets/js/paper-full.js' ), array( 'jquery' ), $this->version, true );
+            wp_enqueue_script( 'network', path_join( get_stylesheet_directory_uri(), 'assets/js/network.js' ), array( 'jquery' ), $this->version, true );
+        }
     }
 
     function action_enqueue_stylesheets() {
