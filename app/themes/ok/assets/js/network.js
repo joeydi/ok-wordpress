@@ -10,41 +10,41 @@
 var $ = $ || jQuery,
     OK = OK || {};
 
-var show_network = function () {
-    var hero = $('#hero'),
-        hero_height = hero.height(),
-        container = hero.find('.container'),
-        overlay = hero.find('#canvas-overlay');
+// var show_network = function () {
+//     var hero = $('#hero'),
+//         hero_height = hero.height(),
+//         container = hero.find('.container'),
+//         overlay = hero.find('#canvas-overlay');
 
-    hero.data('original_height', hero_height);
+//     hero.data('original_height', hero_height);
 
-    container.transition({
-        left: '-100%',
-        opacity: 0
-    }, 350);
+//     container.transition({
+//         left: '-100%',
+//         opacity: 0
+//     }, 350);
 
-    overlay.transition({
-        opacity: 0
-    }, 350);
-};
+//     overlay.transition({
+//         opacity: 0
+//     }, 350);
+// };
 
-var hide_network = function () {
-    var hero = $('#hero'),
-        hero_height = hero.height(),
-        container = hero.find('.container'),
-        overlay = hero.find('#canvas-overlay');
+// var hide_network = function () {
+//     var hero = $('#hero'),
+//         hero_height = hero.height(),
+//         container = hero.find('.container'),
+//         overlay = hero.find('#canvas-overlay');
 
-    hero.data('original_height', hero_height);
+//     hero.data('original_height', hero_height);
 
-    container.transition({
-        left: '0',
-        opacity: 1
-    }, 350);
+//     container.transition({
+//         left: '0',
+//         opacity: 1
+//     }, 350);
 
-    overlay.transition({
-        opacity: 1
-    }, 350);
-};
+//     overlay.transition({
+//         opacity: 1
+//     }, 350);
+// };
 
 function Network() {
 
@@ -259,6 +259,7 @@ var radius = 8,
 
 $(document).ready(function () {
     var container = $('#network'),
+        overlay = container.find('.overlay'),
         canvas = $('<canvas id="canvas" resize></canvas>'),
         network = new Network();
 
@@ -270,7 +271,11 @@ $(document).ready(function () {
 
     network.init();
 
-    // hero.toggle(show_network, hide_network);
+    overlay.click(function() {
+        $(this).fadeOut(250, function() {
+            $(this).remove();
+        });
+    });
 
     container.click(function (e) {
         network.add_node(e.clientX, e.clientY - 102);
