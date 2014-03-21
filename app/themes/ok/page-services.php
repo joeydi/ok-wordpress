@@ -10,10 +10,10 @@
                 <h2>Design and development that respond to users’ behavior and environment based on screen size, platform and orientation.</h2>
                 <p>Your audience is increasingly going mobile. Make sure you are putting your best foot forward in all situations.</p>
                 <ul>
-                    <li><a href=""><img alt="HTML5" src="<?php bloginfo( 'stylesheet_directory' ); ?>/assets/images/logos/html5.png" /></a></li>
-                    <li><a href=""><img alt="CSS3" src="<?php bloginfo( 'stylesheet_directory' ); ?>/assets/images/logos/css3.png" /></a></li>
-                    <li><a href="">Bootstrap</a></li>
-                    <li><a href="">Foundation</a></li>
+                    <li><a href="http://www.w3.org/TR/html5/"><img alt="HTML5" src="<?php bloginfo( 'stylesheet_directory' ); ?>/assets/images/logos/html5.png" /></a></li>
+                    <li><a href="http://www.w3.org/Style/CSS/"><img alt="CSS3" src="<?php bloginfo( 'stylesheet_directory' ); ?>/assets/images/logos/css3.png" /></a></li>
+                    <li><a href="http://getbootstrap.com/">Bootstrap</a></li>
+                    <li><a href="http://foundation.zurb.com/">Foundation</a></li>
                 </ul>
             </div>
         </div>
