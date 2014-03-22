@@ -6,8 +6,8 @@ RewriteCond %{REQUEST_URI} ^/files/.*
 RewriteRule ^(.*)$ http://static.okaypl.us/$1 [L,R=301]
 RewriteCond %{REQUEST_URI} ^/dropbox/img/.*
 RewriteRule ^dropbox/img/(.*)$ http://static.okaypl.us/images/$1 [L,R=301]
-RewriteCond %{HTTP_HOST} !okaypl.us$ [NC]
-RewriteRule ^(.*)$ http://okaypl.us/$1 [L,R=301]
+#RewriteCond %{HTTP_HOST} !okaypl.us$ [NC]
+#RewriteRule ^(.*)$ http://okaypl.us/$1 [L,R=301]
 </IfModule>
 # END Domain Transfer
 
