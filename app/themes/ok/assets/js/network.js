@@ -49,12 +49,6 @@ var $ = $ || jQuery,
 function Network() {
 
     this.init = function () {
-        var container = $('#network'),
-            window_height = $(window).outerHeight(),
-            header_height = $('body > header').outerHeight();
-
-        container.height(window_height - header_height);
-
         paper.install(window);
         paper.setup('canvas');
 
@@ -256,18 +250,25 @@ var radius = 8,
     edges = [],
     edge_layer;
 
-
 $(document).ready(function () {
     var container = $('#network'),
         overlay = container.find('.overlay'),
-        canvas = $('<canvas id="canvas" resize></canvas>'),
+        canvas = $('<canvas id="canvas" resize></canvas>').appendTo(container),
+        content_height = overlay.outerHeight(),
+        window_height = $(window).outerHeight(),
+        header_height = $('body > header').outerHeight(),
         network = new Network();
 
     if (!container.length) {
         return false;
     }
 
-    container.append(canvas);
+    // Allow scrolling on small windows
+    if (content_height > (window_height - header_height)) {
+        container.height(content_height);
+    } else {
+        container.height(window_height - header_height);
+    }
 
     network.init();
 

@@ -4,11 +4,15 @@
 
 <div id="network">
     <div class="overlay">
-        <blockquote class="container">
-            <p>Do stuff. Be clenched, curious. Not waiting for inspiration's shove or society's kiss on your forehead. Pay attention. It's all about paying attention. Attention is vitality. It connects you with others. It makes you eager. Stay eager.</p>
+        <div class="container">
+            <div class="row">
+                <blockquote class="col-lg-10 col-lg-offset-1">
+                    <p>Do stuff. Be clenched, curious. Not waiting for inspiration's shove or society's kiss on your forehead. Pay attention. It's all about paying attention. Attention is vitality. It connects you with others. It makes you eager. Stay eager.</p>
 
-            <em>&mdash; Susan Sontag</em>
-        </blockquote>
+                    <em>&mdash; Susan Sontag</em>
+                </blockquote>
+            </div>
+        </div>
     </div>
 </div>
 
