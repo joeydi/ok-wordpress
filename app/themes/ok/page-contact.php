@@ -10,7 +10,7 @@
             <h1 class="confirmation col-sm-12">Thanks for contacting us! We'll get back to you shortly.</h1>
             <?php endif; ?>
 
-            <div class="col-sm-6">
+            <div class="col-sm-6 col-md-5 col-md-offset-1">
                 <img class="headshot" src="<?php bloginfo( 'stylesheet_directory' ); ?>/assets/images/headshot.jpg" />
             </div>
             <div class="col-sm-6">
