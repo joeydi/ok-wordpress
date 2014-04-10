@@ -13,7 +13,7 @@
                 </div>
                 <div class="row">
                     <div id="copyright" class="col-sm-8">
-                        <p>&copy; <?php echo date( 'Y' ); ?> Okay Plus, 76 Maple St, Suite 106, Burlington, VT 05401</p>
+                        <p>&copy; <?php echo date( 'Y' ); ?> Okay Plus, 47 Maple St, Suite 106, Burlington, VT 05401</p>
                     </div>
                     <div id="social" class="col-sm-4">
                         <p>
