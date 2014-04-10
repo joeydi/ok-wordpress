@@ -40,7 +40,7 @@
                     <h2>Send Mail To:</h2>
                     <p>
                         <strong>Okay Plus</strong><br />
-                        77 College St, 3B<br />
+                        76 Maple St, Suite 106<br />
                         Burlington, VT 05401
                     </p>
                 </div>
