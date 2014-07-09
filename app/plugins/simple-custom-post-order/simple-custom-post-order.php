@@ -4,7 +4,7 @@
   Plugin Name: Simple Custom Post Order
   Plugin URI: http://hsameer.com.np/simple-custom-post-order/
   Description: Order Items (Posts, Pages, and Custom Post Types) using a Drag and Drop Sortable JavaScript.
-  Version: 2.1
+  Version: 2.2
   Author: Sameer Humagain
   Author URI: http://hsameer.com.np/
  */
@@ -32,7 +32,7 @@ class SCPO_Engine {
 		add_action( 'admin_menu', array( &$this, 'admin_menu' ) );
 		add_action( 'admin_init', array( &$this, 'refresh' ) );
 		add_action( 'admin_init', array( &$this, 'update_options' ) );
-		add_action( 'init', array( &$this, 'enable_objects' ) );
+		add_action( 'admin_init', array( &$this, 'load_script_css' ) );
 
 		add_action( 'wp_ajax_update-menu-order', array( &$this, 'update_menu_order' ) );
 
@@ -97,121 +97,119 @@ class SCPO_Engine {
 		require SCPO_DIR . 'settings.php';
 	}
 
-	function enable_objects() {
+	function _check_load_script_css() {
+		
+		$active = false;
+		
 		$scporder_options = get_option( 'scporder_options' );
-		$objects = $scporder_options['objects']; 
-		if ( is_array( $objects ) ) {
-			$active = false;
-
-			// for Pages or Custom Post Types
-			if ( isset( $_GET['post_type'] ) ) {
-				if ( in_array( $_GET['post_type'], $objects ) ) {
-					$active = true;
+		$objects = $scporder_options['objects'];
+		
+		if ( is_array( $objects ) ) { 
+			if ( !strstr( $_SERVER["REQUEST_URI"], 'action=edit' ) && !strstr( $_SERVER["REQUEST_URI"], 'wp-admin/post-new.php' ) ) {
+				 
+				if ( isset( $_GET['post_type'] ) ) {
+					if ( in_array( $_GET['post_type'], $objects ) ) {
+						$active = true;
+					} 
+				} else if ( strstr( $_SERVER["REQUEST_URI"], 'wp-admin/edit.php' ) ) {
+					if ( in_array( 'post', $objects ) ) {
+						$active = true;
+					}
 				}
-				// for Posts
-			} else {
-				$post_list = strstr( $_SERVER["REQUEST_URI"], 'wp-admin/edit.php' );
-				if ( $post_list && in_array( 'post', $objects ) ) {
-					$active = true;
-				}
-			}
-
-			if ( $active ) {
-				$this->load_script_css();
 			}
 		}
+		return $active;
 	}
 
 	function load_script_css() {
-		global $pagenow;
-		if ( is_admin() && $pagenow == 'edit-tags.php' )
-			return;
-		// load JavaScript
-		wp_enqueue_script( 'jQuery' );
-		wp_enqueue_script( 'jquery-ui-sortable' );
-		wp_enqueue_script( 'scporderjs', SCPO_URL . '/assets/scporder.js', array( 'jquery' ), null, true );
-		// load CSS
-		wp_enqueue_style( 'scporder', SCPO_URL . '/assets/scporder.css', array( ), null );
+		if ( $this->_check_load_script_css() ) { 
+			wp_enqueue_script( 'jQuery' );
+			wp_enqueue_script( 'jquery-ui-sortable' );
+			wp_enqueue_script( 'scporderjs', SCPO_URL . '/assets/scporder.js', array( 'jquery' ), null, true ); 
+			wp_enqueue_style( 'scporder', SCPO_URL . '/assets/scporder.css', array( ), null );
+		}
 	}
 
-	function refresh() {
-
+	function refresh()
+	{
+		 
 		global $wpdb;
-
 		$scporder_options = get_option( 'scporder_options' );
-		$objects = $scporder_options['objects'];
-
+		$objects = $scporder_options['objects']; 
+		
 		if ( is_array( $objects ) ) {
-			foreach ( $objects as $object ) {
-				$sql = "SELECT
-							ID
-						FROM
-							$wpdb->posts
-						WHERE
-							post_type = '" . $object . "'
-							AND post_status IN ('publish', 'pending', 'draft', 'private', 'future')
-						ORDER BY
-							menu_order ASC
-						";
-
-				$results = $wpdb->get_results( $sql );
-
-				foreach ( $results as $key => $result ) {
-					$wpdb->update( $wpdb->posts, array( 'menu_order' => $key + 1 ), array( 'ID' => $result->ID ) );
+			foreach( $objects as $object) { 
+				
+				$result = $wpdb->get_results( "SELECT count(*) as cnt, max(menu_order) as max, min(menu_order) as min FROM $wpdb->posts WHERE post_type = '".$object."' AND post_status IN ('publish', 'pending', 'draft', 'private', 'future')" );
+				if ( count( $result ) > 0 && $result[0]->cnt == $result[0]->max && $result[0]->min != 0 ) {
+					continue;
+				}
+				
+				$results = $wpdb->get_results( "SELECT ID FROM $wpdb->posts WHERE post_type = '".$object."' AND post_status IN ('publish', 'pending', 'draft', 'private', 'future') ORDER BY menu_order ASC" );
+				
+				foreach( $results as $key => $result ) { 
+					$wpdb->update( $wpdb->posts, array( 'menu_order' => $key+1 ), array( 'ID' => $result->ID ) );
 				}
 			}
 		}
 	}
 
-	function update_menu_order() {
+	function update_menu_order()
+	{
 		global $wpdb;
-
-		parse_str( $_POST['order'], $data );
-
-		if ( is_array( $data ) ) {
-
-
-			$id_arr = array( );
-			foreach ( $data as $key => $values ) {
-				foreach ( $values as $position => $id ) {
+		parse_str($_POST['order'], $data);
+		if ( is_array($data) ) {
+			$id_arr = array();
+			foreach( $data as $key => $values ) {
+				foreach( $values as $position => $id ) {
 					$id_arr[] = $id;
 				}
 			}
-
-
-			$menu_order_arr = array( );
-			foreach ( $id_arr as $key => $id ) {
-				$results = $wpdb->get_results( "SELECT menu_order FROM $wpdb->posts WHERE ID = " . $id );
-				foreach ( $results as $result ) {
+			$menu_order_arr = array();
+			foreach( $id_arr as $key => $id ) {
+				$results = $wpdb->get_results( "SELECT menu_order FROM $wpdb->posts WHERE ID = ".$id );
+				foreach( $results as $result ) {
 					$menu_order_arr[] = $result->menu_order;
 				}
-			}
-
-			sort( $menu_order_arr );
-
-			foreach ( $data as $key => $values ) {
-				foreach ( $values as $position => $id ) {
+			} 
+			sort($menu_order_arr);
+			foreach( $data as $key => $values ) {
+				foreach( $values as $position => $id ) {
 					$wpdb->update( $wpdb->posts, array( 'menu_order' => $menu_order_arr[$position] ), array( 'ID' => $id ) );
 				}
 			}
 		}
 	}
 
-	function update_options() {
+	function update_options()
+	{
+		global $wpdb;
 		if ( isset( $_POST['scporder_submit'] ) ) {
-
 			check_admin_referer( 'nonce_scporder' );
-
 			if ( isset( $_POST['objects'] ) ) {
 				$input_options = array( 'objects' => $_POST['objects'] );
 			} else {
 				$input_options = array( 'objects' => '' );
 			}
-
 			update_option( 'scporder_options', $input_options );
+			$scporder_options = get_option( 'scporder_options' );
+			$objects = $scporder_options['objects']; 
+			
+			if ( !empty( $objects ) ) {
+				foreach( $objects as $object) { 
+					$result = $wpdb->get_results( "SELECT count(*) as cnt, max(menu_order) as max, min(menu_order) as min FROM $wpdb->posts WHERE post_type = '".$object."' AND post_status IN ('publish', 'pending', 'draft', 'private', 'future')" );
+					if ( count( $result ) > 0 && $result[0]->max == 0 ) {
+						$results = $wpdb->get_results( "SELECT ID FROM $wpdb->posts WHERE post_type = '".$object."' AND post_status IN ('publish', 'pending', 'draft', 'private', 'future') ORDER BY post_date DESC" );
+						foreach( $results as $key => $result ) {
+							$wpdb->update( $wpdb->posts, array( 'menu_order' => $key+1 ), array( 'ID' => $result->ID ) );
+						}
+					}
+				}
+			}
+			
 			wp_redirect( 'admin.php?page=scporder-settings&msg=update' );
 		}
-	}
+	} 
 
 	function scporder_previous_post_where( $where ) {
 		global $post;
@@ -265,213 +263,81 @@ class SCPO_Engine {
 
 	function scporder_filter_active( $wp_query ) {
 
-		if ( isset( $wp_query->query['suppress_filters'] ) )
-			$wp_query->query['suppress_filters'] = false;
-		if ( isset( $wp_query->query_vars['suppress_filters'] ) )
-			$wp_query->query_vars['suppress_filters'] = false;
+		if ( isset($wp_query->query['suppress_filters']) ) $wp_query->query['suppress_filters'] = false;
+		if ( isset($wp_query->query_vars['suppress_filters']) ) $wp_query->query_vars['suppress_filters'] = false;
 		return $wp_query;
 	}
 
 	function scporder_pre_get_posts( $wp_query ) {
+		global $args;
 		$scporder_options = get_option( 'scporder_options' );
 		$objects = $scporder_options['objects'];
-
+		
 		if ( is_array( $objects ) ) {
-
-
-
+		 
+			
 			if ( is_admin() && !defined( 'DOING_AJAX' ) ) {
-
-
+				 
+				
 				if ( isset( $wp_query->query['post_type'] ) ) {
 					if ( in_array( $wp_query->query['post_type'], $objects ) ) {
 						$wp_query->set( 'orderby', 'menu_order' );
 						$wp_query->set( 'order', 'ASC' );
 					}
 				}
+			 
+			
 			} else {
-
+				 
+					
 				$active = false;
-
-
-
-				if ( empty( $wp_query->query ) ) {
-					if ( in_array( 'post', $objects ) ) {
-						$active = true;
-					}
-				} else {
-
-
-
-					if ( isset( $wp_query->query['suppress_filters'] ) ) {
-
-
-						if ( is_array( $wp_query->query['post_type'] ) ) {
-							$post_types = $wp_query->query['post_type'];
-							foreach ( $post_types as $post_type ) {
-								if ( in_array( $post_type, $objects ) ) {
-									$active = true;
-								}
-							}
-						} else {
-							if ( in_array( $wp_query->query['post_type'], $objects ) ) {
+					 
+				
+				if ( isset( $wp_query->query['post_type'] ) ) { 
+					if ( is_array( $wp_query->query['post_type'] ) ) {
+						$post_types = $wp_query->query['post_type'];
+						foreach( $post_types as $post_type ) {
+							if ( in_array( $post_type, $objects ) ) {
 								$active = true;
 							}
 						}
 					} else {
-
-
-						if ( isset( $wp_query->query['post_type'] ) ) {
-
-
-							if ( is_array( $wp_query->query['post_type'] ) ) {
-								$post_types = $wp_query->query['post_type'];
-								foreach ( $post_types as $post_type ) {
-									if ( in_array( $post_type, $objects ) ) {
-										$active = true;
-									}
-								}
-							} else {
-								if ( in_array( $wp_query->query['post_type'], $objects ) ) {
-									$active = true;
-								}
+						if ( in_array( $wp_query->query['post_type'], $objects ) ) {
+							$active = true;
+						}
+					} 
+				} else {
+					if ( in_array( 'post', $objects ) ) {
+						$active = true;
+					}
+				} 
+				
+				if ( $active ) {
+					
+					if ( isset( $args ) ) { 
+						if ( is_array( $args ) ) {
+							if ( !isset( $args['orderby'] ) ) {
+								$wp_query->set( 'orderby', 'menu_order' );
 							}
+							if ( !isset( $args['order'] ) ) {
+								$wp_query->set( 'order', 'ASC' );
+							} 
 						} else {
-							if ( in_array( 'post', $objects ) ) {
-								$active = true;
+							if ( !strstr( $args, 'orderby=' ) ) {
+								$wp_query->set( 'orderby', 'menu_order' );
+							}
+							if ( !strstr( $args, 'order=' ) ) {
+								$wp_query->set( 'order', 'ASC' );
+								
 							}
 						}
+					} else {
+						$wp_query->set( 'orderby', 'menu_order' );
+						$wp_query->set( 'order', 'ASC' );
 					}
 				}
-
-				if ( $active ) {
-					if ( !isset( $wp_query->query['orderby'] ) || $wp_query->query['orderby'] == 'post_date' )
-						$wp_query->set( 'orderby', 'menu_order' );
-					if ( !isset( $wp_query->query['order'] ) || $wp_query->query['order'] == 'DESC' )
-						$wp_query->set( 'order', 'ASC' );
-				}
 			}
-		}
-	}
-
-}
-
-/* =============================================================================================================
- * Taxonomy Sort
-  =============================================================================================================== */
-class Taxonomy_Order_Engine {
-
-		/**
-		 * Simple class constructor
-		 */
-		function __construct() {
-			// admin initialize
-			add_action( 'admin_init', array( $this, 'admin_init' ) );
-
-			// front-end initialize
-			add_action( 'init', array( $this, 'init' ) );
-		}
-
-		/**
-		 * Initialize administration
-		 */
-		function admin_init() {
-			// load scripts
-			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
-
-
-			// ajax to save the sorting
-			add_action( 'wp_ajax_get_inline_boxes', array( $this, 'inline_edit_boxes' ) );
-
-			// reorder terms when someone tries to get terms
-			add_filter( 'get_terms', array( $this, 'reorder_terms' ) );
-		}
-
-		/**
-		 * Initialize front-page
-		 *
-		 */
-		function init() {
-			// reorder terms when someone tries to get terms
-			add_filter( 'get_terms', array( $this, 'reorder_terms' ) );
-		}
-
-		/**
-		 * Load scripts 
-		 */
-		function enqueue_scripts() {
-			// allow enqueue only on tags/taxonomy page
-			if ( get_current_screen()->base != 'edit-tags' )
-				return;
-			// load jquery and plugin's script
-			wp_enqueue_script( 'jquery' );
-			wp_enqueue_script( 'taxonomyorder', plugins_url( 'assets/taxonomy_order.js', __FILE__ ), array( 'jquery', 'jquery-ui-sortable' ) );
-
-			wp_enqueue_style( 'scporder', SCPO_URL . '/assets/scporder.css', array( ), null );
-		}
-
-		/**
-		 * Do the sorting
-		 */
-		function inline_edit_boxes() {
-			// loop through rows
-			foreach ( $_POST['rows'] as $key => $row ) {
-				// skip empty
-				if ( !isset( $row ) || $row == "" )
-					continue;
-
-				// update order
-				update_post_meta( $row, 'thets_order', ( $key + 1 ) );
-			}
-
-			// kill it for ajax
-			exit;
-		}
-
-		/**
-		 * Order terms 
-		 */
-		function reorder_terms( $objects ) {
-			// we do not need empty objects
-			if ( empty( $objects ) )
-				return $objects;
-
-      // do not apply ordering to list that contains just names
-      if ( !is_object( $objects[0] ) )
-        return $objects;
-      
-			// placeholder for ordered objects
-			$placeholder = array( );
-
-			// invalid key counter (if key is not set)
-			$invalid_key = 9000;
-
-			// loop through objects
-			foreach ( $objects as $key => $object ) {
-				// increase invalid key count
-				$invalid_key++;
-
-				// continue if no term_id
-				if ( !isset( $object->term_id ) )
-					continue;
-
-				// get the order key
-				$term_order = get_post_meta( $object->term_id, 'thets_order', true );
-
-				// use order key if exists, invalid key if not
-				$term_key = ( $term_order != "" && $term_order != 0 ) ? (int) $term_order : $invalid_key;
-
- 
-				$placeholder[$term_key] = $object;
-			}
-
- 
-			ksort( $placeholder );
-
- 
-			return $placeholder;
 		}
 
 	}
- 
-	new Taxonomy_Order_Engine;
+} 

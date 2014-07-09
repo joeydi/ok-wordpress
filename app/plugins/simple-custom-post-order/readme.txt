@@ -1,17 +1,17 @@
 === Simple Custom Post Order ===
 Contributors: hsameerc
-Tags: custom post order, post order, js post order, page order, taxonomy order, posts order, category order, sort posts, sort pages, sort custom posts
+Tags: custom post order, post order, js post order, page order, posts order, category order, sort posts, sort pages, sort custom posts
 Requires at least: 3.0.0
-Tested up to: 3.8
-Stable tag: 3.8
+Tested up to: 3.9.1
+Stable tag: 3.9.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Order posts(posts, any custom post types,any taxonomy) using a Drag and Drop Sortable JavaScript. Configuration is unnecessary. 
+Order posts(posts, any custom post types) using a Drag and Drop Sortable JavaScript. Configuration is unnecessary. 
 
 == Description ==
 
-Order posts(posts, any custom post types,any taxonomy) using a Drag and Drop Sortable JavaScript. Configuration is unnecessary. You can do directly on default WordPress administration.
+Order posts(posts, any custom post types) using a Drag and Drop Sortable JavaScript. Configuration is unnecessary. You can do directly on default WordPress administration.
 Excluding custom query which uses order or orderby parameters, in get_posts or query_posts and so on.
 
 == Installation ==
@@ -45,3 +45,9 @@ An answer to that question.
 
 = Version 2.1 (31-12-2013) =
 * Prevent Breaking autocomplete 
+
+= Version 2.2 (02-07-2014) =
+* Fixed bug: Custom Query which uses 'order' or 'orderby' parameters is preferred
+* It does not depend on the designation manner of arguments( Parameters ). ( $args = 'orderby=&order=' or $args = array( 'orderby' => '', 'order' => '' ) )
+* Previous Versions Issues were Improved.
+* Removed Taxonomy Sort( Will add in next Version :) )
