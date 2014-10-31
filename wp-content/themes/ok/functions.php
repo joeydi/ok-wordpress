@@ -26,6 +26,10 @@ class App {
         add_image_size( 'featured', 720, 9999, false );
         add_image_size( 'project-thumbnail', 480, 9999, false );
 
+        if ( function_exists( 'acf_add_options_page' ) ) {
+            acf_add_options_page();
+        }
+
         // Remove Default WordPress Junk in <head>
         remove_action( 'wp_head', 'feed_links_extra' );
         remove_action( 'wp_head', 'rsd_link' );
