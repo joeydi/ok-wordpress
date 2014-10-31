@@ -1,0 +1,33 @@
+{
+    "key": "group_5453ff326a9a1",
+    "title": "Options",
+    "fields": [
+        {
+            "key": "field_52db5c815cc68",
+            "label": "vCard",
+            "name": "vcard",
+            "prefix": "",
+            "type": "file",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "library": "uploadedTo",
+            "return_format": "url"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": ""
+}

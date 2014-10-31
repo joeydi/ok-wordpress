@@ -1,0 +1,38 @@
+{
+    "key": "group_5453ff3295f82",
+    "title": "Video",
+    "fields": [
+        {
+            "key": "field_52d9c639b14ab",
+            "label": "Video",
+            "name": "video",
+            "prefix": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "new_lines": "",
+            "readonly": 0,
+            "disabled": 0,
+            "rows": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_format",
+                "operator": "==",
+                "value": "video"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "acf_after_title",
+    "style": "seamless",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": ""
+}
