@@ -1,0 +1,20 @@
+{
+    "key": "group_5500b18882ce6",
+    "title": "Agency",
+    "fields": [],
+    "location": [
+        [
+            {
+                "param": "taxonomy",
+                "operator": "==",
+                "value": "client"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "seamless",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": []
+}

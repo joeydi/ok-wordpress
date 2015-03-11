@@ -1,0 +1,20 @@
+{
+    "key": "group_5500b188c18a4",
+    "title": "Image Source",
+    "fields": [],
+    "location": [
+        [
+            {
+                "param": "attachment",
+                "operator": "==",
+                "value": "all"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "seamless",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": []
+}
