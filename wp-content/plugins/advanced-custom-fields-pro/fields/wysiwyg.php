@@ -58,7 +58,7 @@ class acf_field_wysiwyg extends acf_field {
 		add_filter( 'acf_the_content', 'convert_chars' );
 		add_filter( 'acf_the_content', 'wpautop' );
 		add_filter( 'acf_the_content', 'shortcode_unautop' );
-		add_filter( 'acf_the_content', 'prepend_attachment' );
+		//add_filter( 'acf_the_content', 'prepend_attachment' ); *should only be for the_content (causes double image on attachment page)
 		add_filter( 'acf_the_content', 'do_shortcode', 11);
 		
 
@@ -235,8 +235,7 @@ class acf_field_wysiwyg extends acf_field {
 		
 		// vars
 		$id = uniqid('acf-editor-');
-		//$id = $field['id'] . '-' . uniqid();
-		$mode = 'html';
+		$default_editor = 'html';
 		$show_tabs = true;
 		
 		
@@ -249,7 +248,7 @@ class acf_field_wysiwyg extends acf_field {
 		if( $field['tabs'] == 'visual' ) {
 			
 			// case: visual tab only
-			$mode = 'tmce';
+			$default_editor = 'tinymce';
 			$show_tabs = false;
 			
 		} elseif( $field['tabs'] == 'text' ) {
@@ -260,36 +259,43 @@ class acf_field_wysiwyg extends acf_field {
 		} elseif( wp_default_editor() == 'tinymce' ) {
 			
 			// case: both tabs
-			$mode = 'tmce';
+			$default_editor = 'tinymce';
 			
 		}
 		
 		
 		// mode
-		$switch_class = $mode . '-active';
+		$switch_class = ($default_editor === 'html') ? 'html-active' : 'tmce-active';
 		
 		
 		// filter value for editor
 		remove_all_filters( 'acf_the_editor_content' );
 		
-		if( $mode == 'tmce' ) {
+		
+		// WP 4.3
+		if( function_exists('format_for_editor') ) {
 			
-			add_filter('acf_the_editor_content', 'wp_richedit_pre');
+			add_filter( 'acf_the_editor_content', 'format_for_editor', 10, 2 );
 			
+		// WP < 4.3
 		} else {
 			
-			add_filter('acf_the_editor_content', 'wp_htmledit_pre');
+			$function = ($default_editor === 'html') ? 'wp_htmledit_pre' : 'wp_richedit_pre';
+			
+			add_filter('acf_the_editor_content', 'wp_richedit_pre', 10, 1);
 			
 		}
 		
-		$field['value'] = apply_filters( 'acf_the_editor_content', $field['value'] );
+		
+		// filter
+		$field['value'] = apply_filters( 'acf_the_editor_content', $field['value'], $default_editor );
 		
 		?>
 		<div id="wp-<?php echo $id; ?>-wrap" class="acf-editor-wrap wp-core-ui wp-editor-wrap <?php echo $switch_class; ?>" data-toolbar="<?php echo $field['toolbar']; ?>" data-upload="<?php echo $field['media_upload']; ?>">
 			<div id="wp-<?php echo $id; ?>-editor-tools" class="wp-editor-tools hide-if-no-js">
 				<?php if( $field['media_upload'] ): ?>
 				<div id="wp-<?php echo $id; ?>-media-buttons" class="wp-media-buttons">
-					<?php do_action( 'media_buttons' ); ?>
+					<?php do_action( 'media_buttons', $id ); ?>
 				</div>
 				<?php endif; ?>
 				<?php if( user_can_richedit() && $show_tabs ): ?>
