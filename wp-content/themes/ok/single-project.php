@@ -24,7 +24,7 @@ get_header();
                         <strong>Role: </strong><?php echo implode( ', ', $roles ); ?>
                     </p>
                     <?php endif; ?>
-                    
+
                     <?php if ( $clients ) : ?>
                     <p>
                         <span class="glyphicon glyphicon-briefcase"></span>
@@ -59,14 +59,14 @@ get_header();
             <?php
                 $images = get_field( 'images' );
                 $col_class = count( $images ) < 3 ? 'col-sm-6' : 'col-sm-6 col-lg-4';
-                while( has_sub_field( 'images' ) ) : ?>
-            <?php $src = wp_get_attachment_image_src( get_sub_field('id'), 'full' ); ?>
+                foreach( $images as $image ) : ?>
+            <?php $src = wp_get_attachment_image_src( $image['ID'], 'full' ); ?>
             <div class="<?php echo $col_class; ?>">
                 <a href="<?php echo $src[0]; ?>">
-                    <?php echo wp_get_attachment_image( get_sub_field('id'), 'project-thumbnail' ); ?>
+                    <?php echo wp_get_attachment_image( $image['ID'], 'project-thumbnail' ); ?>
                 </a>
             </div>
-            <?php endwhile; ?>
+            <?php endforeach; ?>
         </div>
     </div>
 </div>
