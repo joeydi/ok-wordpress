@@ -40,7 +40,7 @@
                     <h2>Send Mail To:</h2>
                     <p>
                         <strong>Okay Plus</strong><br />
-                        22 Church St, Suite 306<br />
+                        47 Maple St, Suite 220<br />
                         Burlington, VT 05401
                     </p>
                 </div>
