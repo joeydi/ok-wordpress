@@ -87,7 +87,7 @@ class App {
     }
 
     function modify_project_archive_query( $query ) {
-        if ( is_admin() || !is_main_query() || $query->get( 'post_type' ) !== 'project' ) {
+        if ( is_admin() || !$query->is_main_query() || $query->get( 'post_type' ) !== 'project' ) {
             return false;
         }
 
