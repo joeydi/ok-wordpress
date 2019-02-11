@@ -6,11 +6,15 @@
             "key": "field_52d9643d892f1",
             "label": "Quote",
             "name": "quote",
-            "prefix": "",
             "type": "textarea",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "default_value": "",
             "placeholder": "",
             "maxlength": "",
@@ -23,11 +27,15 @@
             "key": "field_52d96467892f3",
             "label": "Source",
             "name": "source",
-            "prefix": "",
             "type": "text",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "default_value": "",
             "placeholder": "",
             "prepend": "",
@@ -52,5 +60,8 @@
     "style": "default",
     "label_placement": "top",
     "instruction_placement": "label",
-    "hide_on_screen": ""
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1549852662
 }

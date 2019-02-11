@@ -6,11 +6,15 @@
             "key": "field_52f0273f2b70e",
             "label": "Website",
             "name": "url",
-            "prefix": "",
             "type": "text",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "default_value": "",
             "placeholder": "",
             "prepend": "",
@@ -35,5 +39,8 @@
     "style": "seamless",
     "label_placement": "top",
     "instruction_placement": "label",
-    "hide_on_screen": ""
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1549852682
 }
