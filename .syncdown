@@ -1,0 +1,4 @@
+#!/bin/bash
+# Rsync wp-content directory down from Fortrabbit
+
+rsync -av okayplus@deploy.us1.frbit.com:/srv/app/okayplus/htdocs/wp-content/ ./wp-content/
