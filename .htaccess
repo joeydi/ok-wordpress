@@ -1,17 +1,3 @@
-<IfModule mod_rewrite.c>
-RewriteEngine On
-
-# Redirect to default domain
-RewriteCond %{HTTP_HOST} !.localhost$
-RewriteCond %{HTTP_HOST} !=okaypl.us
-RewriteRule .* https://okaypl.us%{REQUEST_URI} [R=301,L,N]
-
-# Enforce SSL if not on localhost
-RewriteCond %{HTTP_HOST} !.localhost$
-RewriteCond %{HTTP:X-Forwarded-Proto} !=https
-RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L,N]
-</IfModule>
-
 <IfModule mod_headers.c>
 # Expires after 1 month
 <filesMatch ".(gif|png|jpg|jpeg|ico|pdf|svg|js|css)$">
