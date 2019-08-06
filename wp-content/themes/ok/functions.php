@@ -44,7 +44,6 @@ class App {
 
         add_action( 'wp_enqueue_scripts', array( $this, 'action_enqueue_scripts' ) );
         add_action( 'wp_enqueue_scripts', array( $this, 'action_enqueue_stylesheets' ) );
-        add_action( 'wp_head', array( $this, 'init_typekit' ) );
         add_action( 'pre_get_posts', array( $this, 'modify_project_archive_query' ) );
 
         add_filter( 'body_class', array( $this, 'post_body_class' ) );
@@ -61,7 +60,6 @@ class App {
 
     function action_enqueue_scripts() {
         /* Header scripts */
-        wp_enqueue_script( 'typekit', '//use.typekit.com/vrn4dxs.js' , null, $this->version, false );
         wp_enqueue_script( 'head', path_join( get_stylesheet_directory_uri(), 'assets/js/head.min.js' ), array( 'jquery' ), $this->version, false );
 
         /* Footer scripts */
@@ -78,12 +76,9 @@ class App {
     }
 
     function action_enqueue_stylesheets() {
+        wp_enqueue_style( 'typekit', 'https://use.typekit.net/mfe2meh.css', null, $this->version );
         wp_enqueue_style( 'bootstrap', '//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css', null, $this->version );
         wp_enqueue_style( 'screen', path_join( get_stylesheet_directory_uri(), 'assets/css/screen.css' ), null, $this->version );
-    }
-
-    function init_typekit() {
-        echo '<script type="text/javascript">try{Typekit.load();}catch(e){}</script>';
     }
 
     function modify_project_archive_query( $query ) {
