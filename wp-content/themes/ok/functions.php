@@ -60,13 +60,13 @@ class App {
 
     function action_enqueue_scripts() {
         /* Header scripts */
+        if ( !is_admin() ) {
+            wp_deregister_script( 'jquery' );
+            wp_enqueue_script( 'jquery', 'https://code.jquery.com/jquery-3.4.1.min.js', false, '3.4.1' );
+        }
         wp_enqueue_script( 'head', path_join( get_stylesheet_directory_uri(), 'static/js/head.min.js' ), array( 'jquery' ), $this->version, false );
 
         /* Footer scripts */
-        if ( !is_admin() ) {
-            wp_deregister_script( 'jquery' );
-            wp_enqueue_script( 'jquery', '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js', null, null, true);
-        }
         wp_enqueue_script( 'main', path_join( get_stylesheet_directory_uri(), 'static/js/main.min.js' ), array( 'jquery' ), $this->version, true );
 
         if ( is_page( 'network' ) ) {
