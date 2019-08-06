@@ -284,7 +284,7 @@ html.js.csstransforms3d .home #hero {
     }
 
     img {
-        transform-origin: left, bottom;
+        transform-origin: left bottom;
         transform: translateX(40px) translateY(0) rotate(3deg);
         transition: all 0.5s;
         opacity: 1;
@@ -300,17 +300,17 @@ html.js.csstransforms3d .home #hero {
 
 html.js.csstransforms3d {
     .testimonials {
-        perspective: 1000px;
+        perspective: 10000px;
     }
 
     .testimonial {
         transition: all 1s;
         transform: rotateX(10deg) rotateY(90deg);
-        transform-origin: 110%, top;
+        transform-origin: 110% top;
 
         &:nth-child(even) {
             transform: rotateX(10deg) rotateY(-90deg);
-            transform-origin: -10%, top;
+            transform-origin: -10% top;
         }
 
         &.show {

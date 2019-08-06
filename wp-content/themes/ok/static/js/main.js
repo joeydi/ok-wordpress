@@ -56,14 +56,6 @@ OK.init_clock = function() {
     });
 };
 
-OK.show_testimonial = function(direction) {
-    if (direction == 'down') {
-        $(this).addClass('show');
-    } else {
-        $(this).removeClass('show');
-    }
-};
-
 OK.init_testimonials = function() {
     if (!$('body').hasClass('home')) {
         return false;
@@ -71,20 +63,16 @@ OK.init_testimonials = function() {
 
     $('#hero').addClass('active');
 
-    $('.testimonial')
-        .waypoint({
-            offset: '100%',
-            continuous: true,
-            handler: OK.show_testimonial
-        });
-};
-
-OK.show_project_excerpt = function(direction) {
-    if (direction == 'down') {
-        $(this).addClass('show');
-    } else {
-        $(this).removeClass('show');
-    }
+    $('.testimonial').waypoint({
+        offset: '100%',
+        handler: function(direction) {
+            if (direction == 'down') {
+                $(this.element).addClass('show');
+            } else {
+                $(this.element).removeClass('show');
+            }
+        }
+    });
 };
 
 OK.init_project_archive = function() {
@@ -92,12 +80,16 @@ OK.init_project_archive = function() {
         return false;
     }
 
-    $('.project-excerpt')
-        .waypoint({
-            offset: '100%',
-            continuous: true,
-            handler: OK.show_project_excerpt
-        });
+    $('.project-excerpt').waypoint({
+        offset: '100%',
+        handler: function(direction) {
+            if (direction == 'down') {
+                $(this.element).addClass('show');
+            } else {
+                $(this.element).removeClass('show');
+            }
+        }
+    });
 };
 
 OK.init_project = function() {
@@ -127,7 +119,7 @@ OK.init_project = function() {
     });
 
 
-    $(window).load(function() {
+    $(window).on('load', function() {
         $('#project-pagination')
             .waypoint({
                 offset: '100%',

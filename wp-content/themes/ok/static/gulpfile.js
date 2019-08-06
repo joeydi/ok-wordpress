@@ -63,7 +63,7 @@ gulp.task('jshint', function () {
 gulp.task('js', function () {
     var head = [
         './js/respond.min.js',
-        './js/modernizr.js'
+        './js/modernizr.min.js'
     ];
 
     var main = [
@@ -72,10 +72,11 @@ gulp.task('js', function () {
     ];
 
     var plugins = [
+        './node_modules/waypoints/lib/jquery.waypoints.min.js',
         './js/isotope.pkgd.js',
         './js/jquery.magnific-popup.js',
         './js/jquery.fitvids.js',
-        './js/jquery.waypoints.js',
+        // './js/jquery.waypoints.js',
         './js/fastclick.js',
         './js/bootstrap.js',
         './js/jquery.imagesloaded.js'
