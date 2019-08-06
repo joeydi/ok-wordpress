@@ -72,14 +72,13 @@ gulp.task('js', function () {
     ];
 
     var plugins = [
+        './node_modules/imagesloaded/imagesloaded.pkgd.min.js',
         './node_modules/waypoints/lib/jquery.waypoints.min.js',
-        './js/isotope.pkgd.js',
+        './node_modules/isotope-layout/dist/isotope.pkgd.min.js',
         './js/jquery.magnific-popup.js',
         './js/jquery.fitvids.js',
-        // './js/jquery.waypoints.js',
         './js/fastclick.js',
-        './js/bootstrap.js',
-        './js/jquery.imagesloaded.js'
+        './js/bootstrap.js'
     ];
 
     gulp.src(head)

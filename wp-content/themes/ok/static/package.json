@@ -26,6 +26,8 @@
     "jshint-stylish": "^2.2.1"
   },
   "dependencies": {
+    "imagesloaded": "^4.1.4",
+    "isotope-layout": "^3.0.6",
     "waypoints": "^4.0.1"
   }
 }
