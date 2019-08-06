@@ -10,12 +10,32 @@
  */
 class WPSEO_Endpoint_Statistics implements WPSEO_Endpoint {
 
+	/**
+	 * The namespace of the REST route.
+	 *
+	 * @var string
+	 */
 	const REST_NAMESPACE = 'yoast/v1';
+
+	/**
+	 * The route of the statistics endpoint.
+	 *
+	 * @var string
+	 */
 	const ENDPOINT_RETRIEVE = 'statistics';
 
+	/**
+	 * The name of the capability needed to retrieve data using the endpoints.
+	 *
+	 * @var string
+	 */
 	const CAPABILITY_RETRIEVE = 'read';
 
-	/** @var WPSEO_Statistics_Service Service to use */
+	/**
+	 * Service to use.
+	 *
+	 * @var WPSEO_Statistics_Service
+	 */
 	protected $service;
 
 	/**
