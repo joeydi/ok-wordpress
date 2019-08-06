@@ -1,6 +1,4 @@
 var gulp = require('gulp'),
-    // svgo = require('gulp-svgo'),
-    // sprite = require('gulp-svg-sprite'),
     plumber = require('gulp-plumber'),
     size = require('gulp-size'),
     add = require('gulp-add-src'),
@@ -14,6 +12,17 @@ var gulp = require('gulp'),
     livereload = require('gulp-livereload'),
     sourcemaps = require('gulp-sourcemaps'),
     modernizr = require('gulp-modernizr');
+
+gulp.task('css', function () {
+    var includes = [
+        './node_modules/magnific-popup/dist/magnific-popup.css'
+    ];
+
+    return gulp.src(includes)
+        .pipe(concat('_plugins.scss'))
+        .pipe(gulp.dest('sass'))
+        .pipe(livereload());
+});
 
 gulp.task('sass', function () {
     var options = {
@@ -67,7 +76,6 @@ gulp.task('js', function () {
     ];
 
     var main = [
-        './js/util.js',
         './js/main.js'
     ];
 
@@ -75,7 +83,7 @@ gulp.task('js', function () {
         './node_modules/imagesloaded/imagesloaded.pkgd.min.js',
         './node_modules/waypoints/lib/jquery.waypoints.min.js',
         './node_modules/isotope-layout/dist/isotope.pkgd.min.js',
-        './js/jquery.magnific-popup.js',
+        './node_modules/magnific-popup/dist/jquery.magnific-popup.min.js',
         './js/jquery.fitvids.js',
         './js/fastclick.js',
         './js/bootstrap.js'
@@ -104,6 +112,6 @@ gulp.task('watch', function () {
     gulp.watch('./js/main.js', ['jshint', 'js']);
 });
 
-gulp.task('build', ['sass', 'jshint', 'js']);
+gulp.task('build', ['css', 'sass', 'jshint', 'js']);
 
 gulp.task('default', ['build', 'watch' ]);
