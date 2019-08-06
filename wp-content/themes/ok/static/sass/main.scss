@@ -33,7 +33,10 @@ body > footer {
     color: $black;
     font-size: 20px;
 
-    a, a:visited, a:hover {
+    a,
+    a:visited,
+    a:hover {
+        padding: 12px 0;
         color: $black;
     }
 
@@ -49,6 +52,7 @@ body > footer {
     }
 
     #social a {
+        padding: 0;
         text-decoration: none;
     }
 
