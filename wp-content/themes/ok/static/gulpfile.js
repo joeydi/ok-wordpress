@@ -84,7 +84,7 @@ gulp.task('js', function () {
         './node_modules/waypoints/lib/jquery.waypoints.min.js',
         './node_modules/isotope-layout/dist/isotope.pkgd.min.js',
         './node_modules/magnific-popup/dist/jquery.magnific-popup.min.js',
-        './js/jquery.fitvids.js',
+        './node_modules/vanilla-fitvids/jquery.fitvids.js',
         './js/fastclick.js',
         './js/bootstrap.js'
     ];
