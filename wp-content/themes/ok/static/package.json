@@ -26,6 +26,7 @@
     "jshint-stylish": "^2.2.1"
   },
   "dependencies": {
+    "fastclick": "^1.0.6",
     "imagesloaded": "^4.1.4",
     "isotope-layout": "^3.0.6",
     "magnific-popup": "^1.1.0",
