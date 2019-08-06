@@ -15,8 +15,8 @@
         display: inline-block;
         margin: 0.5em;
         background: $white;
-        @include border-radius(5px);
-        @include transition(all 0.25s);
+        border-radius: 5px;
+        transition: all 0.25s;
 
         @include respond-to(tablet) {
             margin: 1em;
@@ -93,7 +93,7 @@
 
     @include respond-to(tablet) {
         background: $white url('../images/service-cms.jpg') 50% 0 no-repeat;
-        @include background-size(cover);
+        background-size: cover;
 
         .col-sm-6 {
             padding-left: 80px;
@@ -113,7 +113,7 @@
 
     @include respond-to(tablet) {
         background: #ededee url('../images/service-app.jpg') 25% 50% no-repeat;
-        @include background-size(cover);
+        background-size: cover;
     }
 
     @include respond-to(widescreen) {

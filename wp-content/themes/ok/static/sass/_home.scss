@@ -73,7 +73,7 @@ body.home {
             text-align: center;
             font-size: 26px;
             font-weight: $regular;
-            @include background(linear-gradient(top, rgba(255, 255, 255, 0), $white, rgba(255, 255, 255, 0)));
+            background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), $white, rgba(255, 255, 255, 0));
 
             @include respond-to(tablet) {
                 font-size: 42px;
@@ -104,7 +104,7 @@ body.home {
         right: 50%;
         top: -38px;
         margin-right: -8px;
-        @include border-radius(100%);
+        border-radius: 100%;
         background: darken($light-grey, 10%);
         border: 5px solid $light-grey;
     }
@@ -219,7 +219,7 @@ body.home {
             top: 50%;
             margin-top: -40px;
             border: 3px solid $white;
-            @include border-radius(100%);
+            border-radius: 100%;
         }
 
         @include respond-to(tablet) {
@@ -263,58 +263,58 @@ body.home {
 
 html.js.csstransforms3d .home #hero {
     * {
-        @include transform(translateX(40px));
-        @include opacity(0);
+        transform: translateX(40px);
+        opacity: 0;
     }
 
     h1 {
-        @include transition(all 0.25s);
+        transition: all 0.25s;
     }
 
     p {
-        @include transition(all 0.35s);
+        transition: all 0.35s;
     }
 
     a {
-        @include transition(all 0.5s);
+        transition: all 0.5s;
     }
 
     a:last-child {
-        @include transition(all 0.75s);
+        transition: all 0.75s;
     }
 
     img {
-        @include transform-origin(left, bottom);
-        @include transform(translateX(40px) translateY(0) rotate(3deg));
-        @include transition(all 0.5s);
-        @include opacity(1);
+        transform-origin: left, bottom;
+        transform: translateX(40px) translateY(0) rotate(3deg);
+        transition: all 0.5s;
+        opacity: 1;
     }
-    
+
     &.active {
         * {
-            @include transform(translateX(0) translateY(0) rotate(0));
-            @include opacity(1);
+            transform: translateX(0) translateY(0) rotate(0);
+            opacity: 1;
         }
     }
 }
 
 html.js.csstransforms3d {
     .testimonials {
-        @include perspective(10000);
+        perspective: 1000px;
     }
 
     .testimonial {
-        @include transition(all 1s);
-        @include transform(rotateX(10deg) rotateY(90deg));
-        @include transform-origin(110%, top);
+        transition: all 1s;
+        transform: rotateX(10deg) rotateY(90deg);
+        transform-origin: 110%, top;
 
         &:nth-child(even) {
-            @include transform(rotateX(10deg) rotateY(-90deg));
-            @include transform-origin(-10%, top);
+            transform: rotateX(10deg) rotateY(-90deg);
+            transform-origin: -10%, top;
         }
 
         &.show {
-            @include transform(rotateX(0deg) rotateY(0deg));
+            transform: rotateX(0deg) rotateY(0deg);
         }
     }
 }
@@ -339,6 +339,6 @@ html.js.csstransforms3d {
         position: absolute;
         left: 0;
         top: 0;
-        @include transform(rotate(0deg));
+        transform: rotate(0deg);
     }
 }

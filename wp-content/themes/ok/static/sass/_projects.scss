@@ -26,8 +26,8 @@ body.single-project #hero {
     overflow: hidden;
     background: $light-grey;
     margin-bottom: 2em;
-    @include border-radius(3px);
-    @include box-shadow(0 0 3px rgba(0, 0, 0, 0.15));
+    border-radius: 3px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
 
     img {
         position: absolute;
@@ -47,19 +47,19 @@ body.single-project #hero {
 }
 
 html.js.csstransforms .project-excerpt {
-    @include transition(all 0.85s);
-    @include opacity(0);
-    @include transform(scale(1.25) translateY(100px));
+    transition: all 0.85s;
+    opacity: 0;
+    transform: scale(1.25) translateY(100px);
 
     &.show {
         top: 0;
-        @include opacity(1);
-        @include transform(scale(1) translateY(0));
+        opacity: 1;
+        transform: scale(1) translateY(0);
     }
 
     &:hover {
-        @include transition(all 0.25s);
-        @include transform(scale(1.05));
+        transition: all 0.25s;
+        transform: scale(1.05);
     }
 }
 
@@ -96,15 +96,15 @@ body.single-project {
     img {
         display: block;
         margin-bottom: 2em;
-        @include box-shadow(0 0 3px rgba(0, 0, 0, 0.15));
+        box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
     }
 }
 
 html.js.csstransforms .project-images img {
-    @include transition(all 0.25s);
+    transition: all 0.25s;
 
     &:hover {
-        @include transform(scale(1.05));
+        transform: scale(1.05);
     }
 }
 
@@ -135,8 +135,8 @@ html.js.csstransforms .project-images img {
         display: inline-block;
         background: $white;
         color: $red;
-        @include border-radius(5px);
-        @include transition(all 0.25s);
+        border-radius: 5px;
+        transition: all 0.25s;
 
         &:hover {
             background: $red;
@@ -145,7 +145,7 @@ html.js.csstransforms .project-images img {
 
         span {
             display: none;
-            @include transition(none !important);
+            transition: none !important;
 
             @include respond-to(tablet) {
                 display: inline-block;
@@ -158,7 +158,7 @@ html.js.csstransforms .project-images img {
         max-width: 120px;
         margin-top: -30px;
         margin-bottom: 10px;
-        @include box-shadow(0 0 3px rgba(0, 0, 0, 0.15));
+        box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
 
         @include respond-to(tablet) {
             max-width: 160px;
@@ -222,37 +222,37 @@ html.js.csstransforms .project-images img {
 
 html.js.csstransforms #project-pagination {
     * {
-        @include transition(all 0.75s);
+        transition: all 0.75s;
     }
 
     a {
-        @include opacity(0);
-        @include transform(translateY(200px));
+        opacity: 0;
+        transform: translateY(200px);
 
         &:hover img {
-            @include transition(all 0.25s);
-            @include transform(scale(1.05));
+            transition: all 0.25s;
+            transform: scale(1.05);
         }
     }
 
     h3, strong, p {
-        @include transform(translateX(-100px));
+        transform: translateX(-100px);
     }
 
     .next {
         h3, strong, p {
-            @include transform(translateX(100px));
+            transform: translateX(100px);
         }
     }
 
     &.show {
         a {
-            @include opacity(1);
-            @include transform(translateY(0));
+            opacity: 1;
+            transform: translateY(0);
         }
 
         h3, strong, p {
-            @include transform(translateX(0));
+            transform: translateX(0);
         }
     }
 }

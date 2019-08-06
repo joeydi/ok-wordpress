@@ -12,7 +12,7 @@
                 <a class="btn" href="<?php echo home_url( '/contact/' ); ?>">Get In Touch <span class="glyphicon glyphicon-chevron-right"></span></a>
             </div>
             <div class="col-md-7">
-                <img id="phone" src="<?php bloginfo( 'stylesheet_directory' ); ?>/assets/images/phone.png" alt="" />
+                <img id="phone" src="<?php bloginfo( 'stylesheet_directory' ); ?>/static/images/phone.png" alt="" />
             </div>
         </div>
     </div>

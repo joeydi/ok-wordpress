@@ -34,9 +34,9 @@ OK.init_clock = function() {
 
     var content = $('#content'),
         clock_container = $('<div class="clock-container"></div>'),
-        clock_outline = $('<img src="/wp-content/themes/ok/assets/images/clock-outline.svg" />'),
-        clock_minute_hand = $('<img src="/wp-content/themes/ok/assets/images/clock-minute-hand.svg" />'),
-        clock_hour_hand = $('<img src="/wp-content/themes/ok/assets/images/clock-hour-hand.svg" />');
+        clock_outline = $('<img src="/wp-content/themes/ok/static/images/clock-outline.svg" />'),
+        clock_minute_hand = $('<img src="/wp-content/themes/ok/static/images/clock-minute-hand.svg" />'),
+        clock_hour_hand = $('<img src="/wp-content/themes/ok/static/images/clock-hour-hand.svg" />');
 
     content.addClass('js-clock');
 
@@ -54,7 +54,7 @@ OK.init_clock = function() {
             transform: 'rotate(' + top/30 + 'deg)'
         });
     });
-}
+};
 
 OK.show_testimonial = function(direction) {
     if (direction == 'down') {
@@ -141,7 +141,7 @@ OK.init_project = function() {
 
 OK.init_video_post = function() {
     $('.video').fitVids();
-}
+};
 
 $(document).ready(function() {
     OK.init_mobile_nav();

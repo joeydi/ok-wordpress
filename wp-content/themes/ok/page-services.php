@@ -10,8 +10,8 @@
                 <h2>Design and development that respond to users’ behavior and environment based on screen size, platform and orientation.</h2>
                 <p>Your audience is increasingly going mobile. Make sure you are putting your best foot forward in all situations.</p>
                 <ul>
-                    <li><a href="http://www.w3.org/TR/html5/"><img alt="HTML5" src="<?php bloginfo( 'stylesheet_directory' ); ?>/assets/images/logos/html5.png" /></a></li>
-                    <li><a href="http://www.w3.org/Style/CSS/"><img alt="CSS3" src="<?php bloginfo( 'stylesheet_directory' ); ?>/assets/images/logos/css3.png" /></a></li>
+                    <li><a href="http://www.w3.org/TR/html5/"><img alt="HTML5" src="<?php bloginfo( 'stylesheet_directory' ); ?>/static/images/logos/html5.png" /></a></li>
+                    <li><a href="http://www.w3.org/Style/CSS/"><img alt="CSS3" src="<?php bloginfo( 'stylesheet_directory' ); ?>/static/images/logos/css3.png" /></a></li>
                     <li><a href="http://getbootstrap.com/">Bootstrap</a></li>
                     <li><a href="http://foundation.zurb.com/">Foundation</a></li>
                 </ul>
@@ -28,8 +28,8 @@
                 <h2>Custom interfaces for managing everything from marketing websites to editorial content and geodata. All built on battle-tested, open-source software.</h2>
                 <p>We build themes and plugins with extensibility and maintainabilty in mind, ensuring that your project will be flexible and powerful enough serve your business well into the future.</p>
                 <ul>
-                    <li><a href="http://wordpress.org/"><img alt="WordPress" src="<?php bloginfo( 'stylesheet_directory' ); ?>/assets/images/logos/wordpress.png" /></a></li>
-                    <li><a href="https://drupal.org/"><img alt="Drupal" src="<?php bloginfo( 'stylesheet_directory' ); ?>/assets/images/logos/drupal.png" /></a></li>
+                    <li><a href="http://wordpress.org/"><img alt="WordPress" src="<?php bloginfo( 'stylesheet_directory' ); ?>/static/images/logos/wordpress.png" /></a></li>
+                    <li><a href="https://drupal.org/"><img alt="Drupal" src="<?php bloginfo( 'stylesheet_directory' ); ?>/static/images/logos/drupal.png" /></a></li>
                 </ul>
             </div>
         </div>
@@ -44,9 +44,9 @@
                 <h2>Need something custom? Building a product or starting an online business?</h2>
                 <p>From location-based search APIs to web-based tools for data management and anaylsis, I have experience building software solutions for startups, publicly-traded companies, and government agencies alike.</p>
                 <ul>
-                    <li><a href="http://www.python.org/"><img alt="Python" src="<?php bloginfo( 'stylesheet_directory' ); ?>/assets/images/logos/python.png" /></a></li>
-                    <li><a href="https://www.djangoproject.com/"><img alt="Django" src="<?php bloginfo( 'stylesheet_directory' ); ?>/assets/images/logos/django.png" /></a></li>
-                    <li><a href="http://php.net/"><img alt="PHP" src="<?php bloginfo( 'stylesheet_directory' ); ?>/assets/images/logos/php.png" /></a></li>
+                    <li><a href="http://www.python.org/"><img alt="Python" src="<?php bloginfo( 'stylesheet_directory' ); ?>/static/images/logos/python.png" /></a></li>
+                    <li><a href="https://www.djangoproject.com/"><img alt="Django" src="<?php bloginfo( 'stylesheet_directory' ); ?>/static/images/logos/django.png" /></a></li>
+                    <li><a href="http://php.net/"><img alt="PHP" src="<?php bloginfo( 'stylesheet_directory' ); ?>/static/images/logos/php.png" /></a></li>
                 </ul>
             </div>
         </div>

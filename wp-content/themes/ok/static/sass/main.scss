@@ -1,4 +1,4 @@
-@import 'compass/css3';
+// @import 'compass/css3';
 @import 'magnific-popup';
 @import 'icons';
 @import 'variables';
@@ -117,7 +117,7 @@ nav {
     padding-right: 0 !important;
     background-color: $light-red;
     overflow: hidden;
-    @include transition(max-height 0.25s);
+    transition: max-height 0.25s;
 
     &.active {
         max-height: 1000px;
@@ -142,40 +142,40 @@ nav {
 
 html.js.csstransforms nav {
     #menu {
-        @include perspective(1000);
+        perspective: 1000;
 
         li a {
-            @include transform-origin(left, center);
-            @include opacity(0);
-            @include transform(scale(0.85));
+            transform-origin: left, center;
+            opacity: 0;
+            transform: scale(0.85);
         }
 
         li:nth-child(1) a {
-            @include transition(all 0.5s);
+            transition: all 0.5s;
         }
 
         li:nth-child(2) a {
-            @include transition(all 0.65s);
+            transition: all 0.65s;
         }
 
         li:nth-child(3) a {
-            @include transition(all 0.8s);
+            transition: all 0.8s;
         }
 
         li:nth-child(4) a {
-            @include transition(all 0.95s);
+            transition: all 0.95s;
         }
     }
 
     &.active #menu li a {
-        @include opacity(1);
-        @include transform(scale(1));
+        opacity: 1;
+        transform: scale(1);
     }
 
     @include respond-to(tablet) {
         #menu li a {
-            @include opacity(1);
-            @include transform(scale(1));
+            opacity: 1;
+            transform: scale(1);
         }
     }
 }
@@ -193,7 +193,7 @@ html.js.csstransforms nav {
             border-bottom: none;
 
             a {
-                
+
             }
         }
 
@@ -254,8 +254,8 @@ html.js.csstransforms nav {
         margin-top: 1em;
         border: 2px solid $white;
         color: $white;
-        @include border-radius(5px);
-        @include transition(all 0.25s);
+        border-radius: 5px;
+        transition: all 0.25s;
 
         &:hover {
             background: $white;

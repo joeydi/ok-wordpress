@@ -29,7 +29,7 @@
             padding: 0.5em 1em;
             background: $light-grey;
             font-size: 18px;
-            @include box-shadow(none);
+            box-shadow: none;
             border-left-width: 0;
             border-right-width: 0;
             border-bottom-width: 0;
@@ -46,7 +46,7 @@
             background: $red;
             color: $white;
             border: none;
-            @include transition(all 0.35s);
+            transition: all 0.35s;
 
             &:hover,
             &:focus {
@@ -66,8 +66,8 @@
     display: inline-block;
     max-width: 300px;
     border: 6px solid $white;
-    @include border-radius(100%);
-    @include box-shadow(0 3px 5px rgba(0, 0, 0, 0.25));
+    border-radius: 100%;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.25);
     margin-bottom: -30px;
 
     @include respond-to(tablet) {
@@ -80,8 +80,8 @@
     position: relative;
     background: $white;
     color: $black;
-    @include border-radius(5px);
-    @include box-shadow(0 0 5px rgba(0, 0, 0, 0.25));
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
     overflow: hidden;
     text-align: center;
 
@@ -131,7 +131,7 @@
         font-weight: $bold;
         text-transform: uppercase;
         background-color: darken($light-grey, 5%);
-        @include transition(background-color 0.25s);
+        transition: background-color 0.25s;
 
         &:hover {
             text-decoration: none;
@@ -147,7 +147,7 @@
 #map {
     padding: 50px 0;
     background: url('../images/map.jpg') 50% 50% no-repeat;
-    @include background-size(cover);
+    background-size: cover;
 
     @include respond-to(tablet) {
         padding: 100px 0;
