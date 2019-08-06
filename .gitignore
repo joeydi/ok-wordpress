@@ -1,3 +1,6 @@
+#static files workflow
+node_modules
+
 *~
 .DS_Store
 .svn
@@ -5,7 +8,7 @@
 *.bak
 *.swp
 Thumbs.db
-.sass-cache
+yarn-error.log
 
 # wordpress specific
 wp-config.php
@@ -17,6 +20,8 @@ wp-content/advanced-cache.php
 wp-content/wp-cache-config.php
 wp-content/cache/*
 wp-content/cache/supercache/*
+wp-content/object-cache.php
+wp-content/object-cache.php.apc
 
 # wpengine specific
 .smushit-status
@@ -59,7 +64,7 @@ wp-content/mysql.sql
 /wp-admin
 /wp-includes
 /wp-content/index.php
-/wp-content/themes/twentyten
+/wp-content/themes/twenty*
 /wp-content/themes/index.php
 /wp-content/plugins/index.php
 
