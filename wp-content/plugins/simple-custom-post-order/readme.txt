@@ -3,8 +3,8 @@ Contributors: silkalns
 Tags: custom post order, post order, js post order, page order, posts order, category order, sort posts, sort pages, sort custom posts
 Requires at least: 4.6
 Requires PHP: 5.6
-Tested up to: 5.1
-Stable tag: 2.4.4
+Tested up to: 5.8
+Stable tag: 2.5.6
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -35,6 +35,50 @@ An answer to that question.
 3. Settings
 
 == Changelog ==
+= Version 2.5.6 - 27.05.2021 =
+Changed : Revert to 2.5.4
+
+= Version 2.5.5 - 11.05.2021 =
+Changed : Code Cleaning
+Changed : Allow custom orderby in Block Preview ( https://github.com/ColorlibHQ/simple-custom-post-order/issues/98 )
+
+= Version 2.5.4 - 05.03.2021 =
+Changed: Improved Performance ( https://github.com/ColorlibHQ/simple-custom-post-order/issues/105 )
+
+= Version 2.5.3 =
+* Modified deprecated jQuery functions.
+
+= Version 2.5.2 =
+* Modified deprecated JQuery function to improve compatibility with Wordpress 5.5
+* Fixed an issue where posts would be in reverse order after resetting the order
+
+= Version 2.5.1 =
+* Improve fix for post list table width when sorting is enabled ( thanks to gedeminas )
+* Fix for admin ajax overriding queries ( thanks to igritsay )
+
+= Version 2.5.0 =
+* Fixed post list table width when sorting is enabled
+* Review dismiss fix
+
+= Version 2.4.9 =
+* Fixed "Post order not saving"
+
+= Version 2.4.8 =
+* Add ability to reset order to post types
+
+= Version 2.4.7 =
+* Fix undefined index when ordering terms
+* Added filter for post types args shown in settings page
+* Added extra option for advanced view of post types
+
+= Version 2.4.6 =
+* Removed dashboard news widget
+
+
+= Version 2.4.5 =
+* Added 2 action hooks that trigger at `update_menu_order_tags` and `update_menu_order` ( https://github
+* Fix issue with sorting (https://github.com/ColorlibHQ/simple-custom-post-order/issues/49)
+* Fix edit page layout when no item found
 
 = Version 2.4.4 =
 * Fix for slow javscript in admin( https://github.com/ColorlibHQ/simple-custom-post-order/issues/46 )
